@@ -1,0 +1,109 @@
+{
+  "tool": "image_gen built-in",
+  "version": 2,
+  "status": "Approvate dall’utente e integrate",
+  "approved_on": "2026-10-04",
+  "note": "Icone approvate il 4 ottobre 2026, poi ridotte a 1024 px sul lato lungo (Lanczos, alpha premoltiplicato) restando PNG RGBA: sha256 è l'hash del file distribuito, approved_sha256 quello del PNG approvato. La variante schematica del pedone affianca il preset originale.",
+  "prompts": [
+    {
+      "id": "opt-camera",
+      "prompt": "Use case: style-transfer\nInput image: the existing TensorFig camera icon is the EDIT TARGET and the authoritative FLAT DRAWING STYLE reference. It is NOT a crude sketch to turn into a realistic product.\nPrimary request: improve this SCIENTIFIC SCHEMATIC ICON a little while keeping its deliberately flat, simple, vector-like appearance. Redraw the same horizontal laboratory camera. Preserve the LEFT-facing optical inlet and compact rounded rectangular body. Use an identifiable short C-mount inlet with two flat bands, three short neat vent lines on the body and one small muted-blue status dot. Make the silhouette balanced and the outline consistent. Only 10–15 large simple shapes in total.\nStyle requirements: strictly TWO-DIMENSIONAL flat icon as in scientific diagram software. Side elevation with absolutely NO perspective, NO isometric depth. Single uniform dark-slate outline with rounded joins, approximately 3% of icon height. Uniform solid fill regions from a tiny palette: off-white #F5F7FA, pale blue #DCEAF7, medium slate #5B6B80, dark outline #35465C. No gradients whatsoever, no shading, no lighting, no shadows, no reflections, no material texture, no brushed metal, no product rendering, no realism, no photographic detail. Crisp geometry, generous negative space, immediately legible at 48px. Do not add labels, letters, numbers or a background. Genuine transparent background. The output must look much closer to the reference diagram icon than to an actual camera photograph.",
+      "review_id": "opt-camera",
+      "file": "opt-camera.png",
+      "width": 1024,
+      "height": 792,
+      "sha256": "dbeb39965bdee877e070faa4e2d2a7408d3cc49f1b63c155519b541f8323e597",
+      "approved_sha256": "33477ee9e225a436053d56607de27f427a55ebe4f3055892302b9d67d0ad6085"
+    },
+    {
+      "id": "opt-laser",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Horizontal laser source in SIDE elevation, output on the RIGHT: rounded rectangular pale-blue housing, a short dark output nozzle on right, two tiny simple cooling slots, one small yellow triangular laser emblem on left. Balanced compact block; enough visual identity without excessive detail. No emitted beam.",
+      "review_id": "opt-laser",
+      "file": "opt-laser.png",
+      "width": 1024,
+      "height": 496,
+      "sha256": "8c555761dd2dc75e9109d8a9e89a01afd044027a879d061c907f67acbd35a529",
+      "approved_sha256": "81deb226ad7a1798c569e7e7ea28509afd61ccff3f75800f098bde92b34f6a64"
+    },
+    {
+      "id": "opt-objective",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Microscope objective pointing vertically DOWN. A simple top threaded-mount rectangle, compact cylindrical barrel expressed as a rounded rectangular shape, one blue identification ring, a short tapered nose and pale blue semicircular front lens. Fewer and better spaced horizontal bands than original. Flat side elevation; not a tall sharpened pencil.",
+      "review_id": "opt-objective",
+      "file": "opt-objective.png",
+      "width": 910,
+      "height": 1024,
+      "sha256": "bdb258b1c94b59f3c44032cfb77823cb56fa077eb7b1b58a6c162c9282395abc",
+      "approved_sha256": "cf30f6ce86b99485daf05333ee5765390afab8f1600efd8c252a3b7ae2021911"
+    },
+    {
+      "id": "dlm-hospital",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Compact hospital facade in FLAT FRONT view: flat roof rather than the original house roof, two short side wings, one central entrance, four large blue square windows, one small blue plus above the door. Pale-blue and off-white solid regions, dark outline. Simple unmistakable hospital pictogram; no 3D building.",
+      "review_id": "dlm-hospital",
+      "file": "dlm-hospital.png",
+      "width": 1024,
+      "height": 792,
+      "sha256": "c36589958f685a25a4cfb4c1ad0425972f5d1f99da58140b235d5b976757370a",
+      "approved_sha256": "e330bc81dcffbd0fa493cb9c82408f5efc734171ec6edfee698185a5f7e254ae"
+    },
+    {
+      "id": "chem-pipette",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Micropipette vertical tip DOWN. Make it recognizable by adding a small thumb plunger on top, a small finger hook near the top, ergonomic off-white handle with one blue accent, a thin shaft and one tapered pale-blue tip. No liquid drop. Flat side outline, no realistic materials, no small volume digits.",
+      "review_id": "chem-pipette",
+      "file": "chem-pipette.png",
+      "width": 578,
+      "height": 1024,
+      "sha256": "4862ee3358bc78c3d3b2eaab2dda1526f86a03a90cdd47914b2d243f9c68cfb4",
+      "approved_sha256": "d988dc2de607fe924dad009ddb29a09e7a53cdf01099e4cbe452016901a837fd"
+    },
+    {
+      "id": "gen-sequencer",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Compact DNA sequencer in FLAT FRONT view. Rounded rectangular instrument body, a visibly distinct sample-cartridge loading bay on left with ONE rectangular cartridge, a simple pale-blue display on right containing three short horizontal lines only, one small round status indicator. No external DNA helix, no bench, no realistic knobs.",
+      "review_id": "gen-sequencer",
+      "file": "gen-sequencer.png",
+      "width": 1024,
+      "height": 849,
+      "sha256": "26defa0c3b62c148f91e5b611d4cbd6971cd1e13a2bc6d01e779bd36b2b6483e",
+      "approved_sha256": "1b2666c02aed226e261c44bf28e27f22ffefa134bcb50253a57d54ba10672a90"
+    },
+    {
+      "id": "rob-humanoid",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Compact full-body humanoid robot in FLAT FRONT view. A small rounded-square head with one blue visor, rounded rectangular torso and simple separate hips, exactly two arms slightly apart from torso, two legs and two broad feet. Five to eight simple circular joints. Pale-blue panels distinguish body segments. Strong readable silhouette, no detailed fingers, no face, no cartoon expression.",
+      "review_id": "rob-humanoid",
+      "file": "rob-humanoid.png",
+      "width": 656,
+      "height": 1024,
+      "sha256": "63005a11f9dd0c58800ae0b7d52a11abc91dfe46483edbe8471728a37312050b",
+      "approved_sha256": "574cbb129ee77fe42ec929508799ddfb3c0305ee271ce2156e9d4f2c82cd1c5c"
+    },
+    {
+      "id": "rob-quadruped",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Robot quadruped in FLAT SIDE view facing RIGHT. Pale mustard rectangular body, tiny dark sensor inset at right, exactly FOUR distinct bent legs in a staggered stance so all four feet are separately visible. Two nearer legs pale-yellow and two farther legs uniform slate fill; no gradients or perspective surfaces. Two-segment legs with small circle joints, small dark feet. No ground line, no animal head/ears/tail.",
+      "review_id": "rob-quadruped",
+      "file": "rob-quadruped.png",
+      "width": 1024,
+      "height": 772,
+      "sha256": "6cc17ca578a3c57d51564e157ec36a42bb7f69d84b46361fcede13e607bb448d",
+      "approved_sha256": "e30986769649aab201e7424011a41f95ab46e93911a61149fe6b7066dc77820b"
+    },
+    {
+      "id": "qc-fridge",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Simplified open dilution-refrigerator insert, front schematic view. FIVE pale mustard thermal stages represented by narrow flat ellipses of successively smaller width, three slender vertical connecting rods, two sparse curved cable lines, a small pale-blue cylindrical sample chamber below. All strokes uniform. Readable circular-stage silhouette with ample negative space, no ladder-like flat bars, no shiny gold or metallic surfaces.",
+      "review_id": "qc-fridge",
+      "file": "qc-fridge.png",
+      "width": 803,
+      "height": 1024,
+      "sha256": "015fc192e9912b91f9173c29224d1366b9d67fe6b5a3c86ddc6f4d3214f3b56f",
+      "approved_sha256": "3b42f29ef1637d58ded864cbb5610a832e0f2690a59bae44783b9684aac6a7a2"
+    },
+    {
+      "id": "pr-ped-schematic",
+      "prompt": "Use case: style-transfer\nInput images: Image 1 is the current TensorFig block icon, the EDIT TARGET. Image 2 is the DRAWING STYLE reference only: a simple flat outlined camera. Do not depict the camera in this output.\nPrimary request: redraw the subject of Image 1 as a clearer scientific SCHEMATIC ICON in the flat illustration language of Image 2. The user explicitly rejected realism. Preserve its meaning, useful proportions and orientation, while improving silhouette, balance and separation of parts.\nStyle: two-dimensional, vector-like, diagram icon built from a handful of simple flat SVG-like shapes. Uniform thin-medium dark slate outline #35465C with rounded joins. Solid pastel fills only: off-white #F5F7FA, pale blue #DCEAF7, slate #5B6B80, optional muted yellow #F5DEA2 or pale green #DCE9D3 as appropriate. About 10–20 large simple shapes, avoid tiny details. Clean and readable at 48 pixels.\nDO NOT make a product render or a photograph. No gradients, no shadows, no lighting, no gloss, no metal, no texture, no 3D shading, no isometric view, no photorealistic anatomy. No text, letters, digits, logos, labels, diagram arrows or decorative extras. Flat front/side schematic view. Fully visible centered single icon with 8% safe margin, transparent background and no floor. Keep genuine alpha transparency.\nSubject-specific instructions: Full-body generic adult pedestrian as a FLAT FACLESS 2D illustration: oval warm-beige head without eyes/nose/mouth, simple dark hair cap, muted blue jacket drawn with two or three solid shapes, dark slate trousers, two distinct feet. One leg slightly forward and arms slightly separated, natural small walking step. No clothing wrinkles, skin texture or realistic face. Remove the original busy indoor background. Person alone, no bounding box or floor.",
+      "review_id": "pr-ped",
+      "file": "pr-ped-schematic.png",
+      "width": 683,
+      "height": 1024,
+      "sha256": "3b3f734cd4cd60cd2f500396ae50177e69cf81f61a8a62dd417c187442935b5a",
+      "approved_sha256": "45590b5a7edd34d890b6b5360173c1c724a45ba411ccb3f13ff7df86740382ca"
+    }
+  ]
+}

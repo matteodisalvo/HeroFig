@@ -1,0 +1,141 @@
+/* ---------- informazioni sull'app e invito alla stella ---------- */
+
+.modal.about {
+  position: relative;
+  width: min(360px, calc(100vw - 48px));
+  padding: 26px 24px 20px;
+  text-align: center;
+}
+.about-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.about-logo {
+  display: block;
+  margin: 2px auto 10px;
+}
+.about h2 {
+  font-size: 20px;
+}
+/* il marchio: «Fig» in orchidea, più chiara sul fondo scuro */
+.about-name span {
+  color: #9a4fc8;
+}
+:root[data-theme='dark'] .about-name span {
+  color: #cfa3ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .about-name span {
+    color: #cfa3ec;
+  }
+}
+.about p {
+  margin: 0;
+}
+.about-version {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.about .about-text {
+  margin-top: 10px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.about .about-author {
+  margin-top: 16px;
+  font-size: 13.5px;
+}
+.about-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: inherit;
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+}
+.about-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.about-btn.star .icon {
+  color: #e3a008;
+}
+.about .about-hint {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* il marchio nella barra apre le informazioni */
+button.brand {
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+button.brand:hover {
+  background: var(--accent-soft);
+}
+
+.star-nudge {
+  position: fixed;
+  right: 16px;
+  bottom: 42px;
+  z-index: 55;
+  display: flex;
+  gap: 10px;
+  width: 300px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--panel);
+  box-shadow: var(--shadow-lg);
+  font-size: 13px;
+  animation: pop 0.18s ease-out;
+}
+.star-nudge-icon {
+  flex: none;
+  margin-top: 1px;
+  color: #e3a008;
+}
+.star-nudge p {
+  margin: 3px 0 0;
+  color: var(--text-2);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.star-nudge-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.star-nudge-later {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.star-nudge-later:hover {
+  color: inherit;
+  text-decoration: underline;
+}

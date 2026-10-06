@@ -1,0 +1,246 @@
+/* Sezione "paper" nella barra della vista Pagina: dove va la figura, stato a bollini, azioni a icone. */
+
+.plink {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r-lg);
+  background: var(--panel-2);
+  font-size: var(--fs-sm);
+}
+.plink-ico {
+  flex: none;
+}
+.plink-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-width: 0;
+}
+.plink-head > b {
+  font-weight: 600;
+}
+.plink-muted {
+  color: var(--muted);
+}
+.plink-error {
+  color: var(--danger);
+  min-width: 0;
+}
+
+/* tre modi di collegare */
+.plink-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s2);
+}
+.plink-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--panel);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.plink-choice:hover,
+.plink-choice[aria-pressed='true'] {
+  border-color: var(--accent);
+}
+.plink-choice .plink-ico {
+  margin-top: 2px;
+  color: var(--accent);
+}
+.plink-choice span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.plink-choice b {
+  font-weight: 600;
+}
+.plink-choice small {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+/* collegata: dove va il file */
+.plink-kind {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.plink-kind.overleaf {
+  background: color-mix(in srgb, #47a141 18%, transparent);
+  color: #3a8a35;
+}
+.plink-kind.drive {
+  background: color-mix(in srgb, #f5b400 22%, transparent);
+  color: #b07c00;
+}
+.plink-path {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.plink-where {
+  font-weight: 600;
+}
+.plink-sep {
+  color: var(--faint);
+}
+.plink-name {
+  width: 13ch;
+  padding: 1px 6px;
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--input-bg);
+  color: var(--text);
+}
+.plink-ext {
+  color: var(--muted);
+  margin-left: -2px;
+}
+.plink-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+  flex: none;
+}
+.plink-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--panel);
+  color: var(--text-2);
+  cursor: pointer;
+}
+.plink-icon-btn:hover {
+  background: var(--btn-hover);
+  color: var(--text);
+}
+
+/* stato a bollini */
+.plink-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.plink-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  white-space: nowrap;
+}
+.plink-chip.ok {
+  color: var(--ok);
+  border-color: color-mix(in srgb, var(--ok) 35%, transparent);
+}
+.plink-chip.warn {
+  color: var(--paper-warn);
+  border-color: color-mix(in srgb, #e8590c 40%, transparent);
+}
+.plink-chip.info {
+  color: var(--accent-text);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.plink-chip-btn {
+  display: inline-grid;
+  place-items: center;
+  margin: -2px -4px -2px 2px;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.plink-chip-btn:hover {
+  background: var(--hover);
+}
+.plink-chip-btn.text {
+  font: inherit;
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+.plink-hint {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+}
+.plink-hint .plink-ico {
+  margin-top: 1px;
+}
+
+/* Overleaf con Git */
+.plink-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--s2) var(--s3);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--border-subtle);
+}
+.plink-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.plink-form input {
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: 5px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r);
+  background: var(--input-bg);
+  color: var(--text);
+}
+.plink-form .plink-hint,
+.plink-form-actions {
+  grid-column: 1 / -1;
+}
+.plink-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s2);
+}
+
+/* nel pannello di destra (vista Pagina): colonna stretta, le scelte una sotto l'altra */
+.inspector .plink {
+  padding: 0;
+  background: none;
+}
+.inspector .plink-choices {
+  grid-template-columns: minmax(0, 1fr);
+}
+.inspector .plink-head {
+  flex-wrap: wrap;
+}
+.inspector .plink-form {
+  grid-template-columns: minmax(0, 1fr);
+}

@@ -1,0 +1,282 @@
+{
+  "autofluo": {
+    "width": 1024,
+    "height": 853
+  },
+  "autofluogray": {
+    "width": 1024,
+    "height": 853
+  },
+  "ct": {
+    "width": 1024,
+    "height": 853
+  },
+  "ctseg": {
+    "width": 1024,
+    "height": 853
+  },
+  "derm": {
+    "width": 1024,
+    "height": 853
+  },
+  "ecg": {
+    "width": 1024,
+    "height": 512
+  },
+  "fluor": {
+    "width": 1024,
+    "height": 853
+  },
+  "fundus": {
+    "width": 1024,
+    "height": 853
+  },
+  "he": {
+    "width": 1024,
+    "height": 853
+  },
+  "ihc": {
+    "width": 1024,
+    "height": 853
+  },
+  "mpm": {
+    "width": 1024,
+    "height": 853
+  },
+  "mri": {
+    "width": 1024,
+    "height": 853
+  },
+  "mriseg": {
+    "width": 1024,
+    "height": 853
+  },
+  "oct": {
+    "width": 1024,
+    "height": 683
+  },
+  "scanseg": {
+    "width": 1024,
+    "height": 853
+  },
+  "unstained": {
+    "width": 1024,
+    "height": 853
+  },
+  "us": {
+    "width": 1024,
+    "height": 853
+  },
+  "wsi": {
+    "width": 1024,
+    "height": 768
+  },
+  "xray": {
+    "width": 1024,
+    "height": 853
+  },
+  "brainicon": {
+    "width": 1024,
+    "height": 819
+  },
+  "cell": {
+    "width": 1024,
+    "height": 819
+  },
+  "dna": {
+    "width": 1024,
+    "height": 388
+  },
+  "hearticon": {
+    "width": 1024,
+    "height": 931
+  },
+  "lungsicon": {
+    "width": 1024,
+    "height": 1024
+  },
+  "microscope": {
+    "width": 833,
+    "height": 1024
+  },
+  "sp-aliasing": {
+    "width": 1024,
+    "height": 409
+  },
+  "sp-am": {
+    "width": 1024,
+    "height": 441
+  },
+  "sp-bandpass": {
+    "width": 1024,
+    "height": 683
+  },
+  "sp-chirp": {
+    "width": 1024,
+    "height": 461
+  },
+  "sp-eeg": {
+    "width": 1024,
+    "height": 708
+  },
+  "sp-eye": {
+    "width": 1024,
+    "height": 669
+  },
+  "sp-fm": {
+    "width": 1024,
+    "height": 441
+  },
+  "sp-harmonics": {
+    "width": 1024,
+    "height": 512
+  },
+  "sp-headcap": {
+    "width": 925,
+    "height": 1024
+  },
+  "sp-headcap10-20": {
+    "width": 936,
+    "height": 1024
+  },
+  "sp-highpass": {
+    "width": 1024,
+    "height": 683
+  },
+  "sp-hn": {
+    "width": 1024,
+    "height": 521
+  },
+  "sp-impulses": {
+    "width": 1024,
+    "height": 461
+  },
+  "sp-logmel": {
+    "width": 1024,
+    "height": 677
+  },
+  "sp-lowpass": {
+    "width": 1024,
+    "height": 683
+  },
+  "sp-melbank": {
+    "width": 1024,
+    "height": 441
+  },
+  "sp-mfccimg": {
+    "width": 1024,
+    "height": 551
+  },
+  "sp-noisy": {
+    "width": 1024,
+    "height": 461
+  },
+  "sp-notch": {
+    "width": 1024,
+    "height": 683
+  },
+  "sp-polezero": {
+    "width": 1024,
+    "height": 1024
+  },
+  "sp-psd": {
+    "width": 1024,
+    "height": 512
+  },
+  "sp-psk": {
+    "width": 1024,
+    "height": 1024
+  },
+  "sp-qam": {
+    "width": 1024,
+    "height": 1024
+  },
+  "sp-qamrx": {
+    "width": 1024,
+    "height": 1024
+  },
+  "sp-quantized": {
+    "width": 1024,
+    "height": 504
+  },
+  "sp-replicas": {
+    "width": 1024,
+    "height": 409
+  },
+  "sp-sampling": {
+    "width": 1024,
+    "height": 473
+  },
+  "sp-scalogram": {
+    "width": 1024,
+    "height": 677
+  },
+  "sp-sine": {
+    "width": 1024,
+    "height": 503
+  },
+  "sp-spectrogram": {
+    "width": 1024,
+    "height": 677
+  },
+  "sp-spectrum": {
+    "width": 1024,
+    "height": 559
+  },
+  "sp-speech": {
+    "width": 1024,
+    "height": 441
+  },
+  "sp-square": {
+    "width": 1024,
+    "height": 502
+  },
+  "sp-stft": {
+    "width": 1024,
+    "height": 439
+  },
+  "sp-xn": {
+    "width": 1024,
+    "height": 495
+  },
+  "opt-camera": {
+    "width": 1024,
+    "height": 792
+  },
+  "opt-laser": {
+    "width": 1024,
+    "height": 496
+  },
+  "opt-objective": {
+    "width": 910,
+    "height": 1024
+  },
+  "dlm-hospital": {
+    "width": 1024,
+    "height": 792
+  },
+  "chem-pipette": {
+    "width": 578,
+    "height": 1024
+  },
+  "gen-sequencer": {
+    "width": 1024,
+    "height": 849
+  },
+  "rob-humanoid": {
+    "width": 656,
+    "height": 1024
+  },
+  "rob-quadruped": {
+    "width": 1024,
+    "height": 772
+  },
+  "qc-fridge": {
+    "width": 803,
+    "height": 1024
+  },
+  "pr-ped-schematic": {
+    "width": 683,
+    "height": 1024
+  }
+}

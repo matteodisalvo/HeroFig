@@ -1,0 +1,289 @@
+/* Vista "Pagina": interruttore nella toolbar e barra in alto sul foglio. */
+
+/* .toolbar davanti: .segmented (styles.css) è largo al 100% e viene caricato dopo */
+.toolbar .view-switch {
+  width: auto;
+  flex: none;
+}
+.toolbar .view-switch button {
+  flex: none;
+  padding: 0 12px;
+  font-weight: 600;
+}
+
+/* arancione degli avvisi: più chiaro sul tema scuro, dove quello scuro si leggerebbe male */
+:root {
+  --paper-warn: #c2410c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper-warn: #fb923c;
+  }
+}
+:root[data-theme='dark'] {
+  --paper-warn: #fb923c;
+}
+
+/* barra sottile sul foglio: rivista, larghezza, misure, stato */
+.canvas {
+  container: canvas / inline-size;
+}
+/* foglio stretto (finestra piccola o pannelli aperti): prima spariscono le misure, che restano nel pannello */
+@container canvas (max-width: 720px) {
+  .paper-info,
+  .paper-sep {
+    display: none;
+  }
+}
+@container canvas (max-width: 560px) {
+  .paper-auto-label {
+    display: none;
+  }
+  .paper-bar .paper-span button {
+    padding: 0 7px;
+  }
+}
+.paper-bar {
+  position: absolute;
+  z-index: 14;
+  top: calc(var(--bar-space) + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 2 * var(--s4));
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  height: 42px;
+  padding: 0 6px 0 var(--s2);
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  color-scheme: inherit;
+  white-space: nowrap;
+}
+.paper-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 8px 0 10px;
+  border-radius: 999px;
+  color: var(--text-2);
+}
+.paper-select:hover {
+  background: var(--hover);
+}
+.paper-select select,
+.paper-select select:hover,
+.paper-select select:focus {
+  appearance: none;
+  width: auto;
+  field-sizing: content; /* larga quanto il nome della rivista scelta */
+  border: 0;
+  padding: 0;
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.paper-select select:focus-visible {
+  outline: none;
+}
+.paper-select:has(select:focus-visible) {
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.paper-select .icon:last-child {
+  color: var(--muted);
+  pointer-events: none;
+}
+.paper-bar .paper-span {
+  width: auto;
+  flex: none;
+}
+.paper-bar .paper-span button {
+  flex: none;
+  padding: 0 10px;
+}
+.paper-onecol {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+.paper-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+}
+.paper-info {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+.paper-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.paper-status.ok {
+  color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+.paper-status.warn {
+  color: var(--paper-warn);
+  background: color-mix(in srgb, #e8590c 12%, transparent);
+}
+.paper-status:hover {
+  border-color: currentColor;
+}
+.paper-bar .paper-auto {
+  height: 30px;
+  border-radius: 999px;
+  border-color: transparent;
+}
+
+/* pannello di destra: controlli a spunta */
+.paper-ready {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--ok) 11%, transparent);
+  color: var(--ok);
+}
+.paper-ready .icon {
+  flex: none;
+  margin-top: 1px;
+}
+.paper-ready span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.paper-ready small {
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+}
+.paper-auto-big {
+  width: 100%;
+  height: 32px;
+  margin-bottom: 10px;
+  border-color: transparent;
+}
+.paper-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.paper-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 6px;
+  border-radius: var(--r);
+}
+.paper-check.warn:hover {
+  background: var(--hover);
+}
+.paper-check-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+}
+.paper-check.ok .paper-check-mark {
+  background: color-mix(in srgb, var(--ok) 14%, transparent);
+  color: var(--ok);
+}
+.paper-check.warn .paper-check-mark {
+  background: color-mix(in srgb, #e8590c 14%, transparent);
+  color: var(--paper-warn);
+}
+.paper-check-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+}
+.paper-check-text b {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.paper-check.ok .paper-check-text b {
+  font-weight: 500;
+  color: var(--text-2);
+}
+.paper-check-text small {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+}
+.paper-check .btn {
+  flex: none;
+  height: 24px;
+  padding: 0 9px;
+  font-size: var(--fs-xs);
+}
+textarea.paper-caption {
+  width: 100%;
+  min-height: 64px;
+  padding: 7px 9px;
+  resize: vertical;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r);
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+}
+.paper-empty {
+  padding: 14px;
+}
+
+.paper-caption-text {
+  line-height: 1.25;
+  color: #222222;
+  cursor: text;
+  border-radius: 2px;
+}
+.paper-caption-text:hover {
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+}
+.paper-caption-text .placeholder {
+  color: #9aa1ab;
+  font-style: italic;
+}
+
+/* anteprima di stampa: il filtro vale solo sullo schermo, non tocca la figura né gli export */
+.canvas:has(.paper-bar[data-preview='grigi']) > svg {
+  filter: grayscale(1);
+}
+.canvas:has(.paper-bar[data-preview='daltonici']) > svg {
+  filter: url(#paper-cvd);
+}

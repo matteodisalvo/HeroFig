@@ -1,0 +1,39 @@
+.modal.feedback { width: min(620px, calc(100vw - 32px)); }
+.feedback > .hint { margin: 0 0 16px; }
+.feedback-types { display: flex; gap: 5px; padding: 4px; margin-bottom: 18px; background: var(--panel-2); border: 1px solid var(--border); border-radius: var(--r-lg); }
+.feedback-types button { flex: 1; padding: 9px 8px; border-radius: var(--r); color: var(--text-2); font-size: var(--fs-sm); }
+.feedback-types button[aria-pressed='true'] { background: var(--accent-soft); color: var(--accent-text); font-weight: 600; }
+.feedback-types button:disabled { opacity: 0.6; }
+.feedback-fields { display: grid; gap: 7px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.feedback-fields > label:not(:first-of-type) { margin-top: 7px; }
+.feedback-fields label { font-size: var(--fs-sm); color: var(--text); font-weight: 500; }
+.feedback-fields input:not([type='checkbox']), .feedback-fields textarea { width: 100%; min-width: 0; padding: 8px 10px; height: auto; border: 1px solid var(--border-strong); border-radius: var(--r); background: var(--input-bg); color: var(--text); font-size: var(--fs-sm); }
+.feedback-fields input:focus, .feedback-fields textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+.feedback-fields:disabled { opacity: 0.65; }
+.feedback textarea { resize: vertical; line-height: 1.45; }
+.feedback-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 7px; }
+.feedback-contact label { display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; }
+.feedback .hint { line-height: 1.5; }
+.feedback-required, .feedback-fields .hint { margin: 0; }
+.feedback-diagnostics { margin-top: 7px; }
+.feedback-diagnostics label { display: flex; align-items: center; gap: 8px; }
+.feedback-diagnostics .hint { padding-inline-start: 23px; margin-top: 5px; }
+.feedback-preview { margin-top: 14px; font-size: var(--fs-sm); color: var(--text-2); }
+.feedback-preview summary { cursor: pointer; padding: 5px 0; }
+.feedback-preview textarea { width: 100%; margin-top: 6px; font-family: var(--mono); font-size: var(--fs-xs); }
+.feedback-error { border-inline-start: 3px solid var(--danger); padding: 10px 12px; color: var(--text); background: var(--panel-2); line-height: 1.5; font-size: var(--fs-sm); }
+.feedback-privacy { margin: 14px 0 12px; overflow-wrap: anywhere; }
+.feedback-privacy a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.feedback-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.feedback-actions .btn { height: 34px; }
+.feedback-success { padding: 24px 4px; line-height: 1.5; outline: none; }
+.feedback-success > .icon { color: var(--accent-text); }
+.feedback .feedback-success h3 { color: var(--text); text-transform: none; letter-spacing: normal; font-size: 18px; margin: 12px 0 8px; }
+.feedback-success p { color: var(--text-2); }
+.feedback-success .feedback-receipt { font-family: var(--mono); font-size: var(--fs-sm); }
+.feedback-back { margin-top: 18px; color: var(--text-2); text-decoration: underline; font-size: var(--fs-xs); }
+@media (max-width: 540px) {
+  .feedback-contact { grid-template-columns: 1fr; }
+  .feedback-types { flex-wrap: wrap; }
+  .feedback-types button { flex: 1 1 120px; }
+}

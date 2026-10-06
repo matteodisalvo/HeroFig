@@ -1,0 +1,428 @@
+/* Insieme: pulsante nella barra, pannello sotto il pulsante e cursori degli altri sul foglio. */
+
+.together {
+  position: relative;
+  display: flex;
+}
+.together-tool.off {
+  color: var(--faint);
+}
+.together-tool.off .icon {
+  opacity: 0.7;
+}
+.together-tool.on {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+/* stato del collegamento: verde in linea, giallo mentre si collega, grigio se il server non risponde */
+.together-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+.together-dot.online {
+  background: var(--ok);
+}
+.together-dot.connecting {
+  background: var(--warn);
+}
+.together-avatars {
+  display: flex;
+}
+.together-avatars i {
+  width: 18px;
+  height: 18px;
+  margin-left: -5px;
+  border: 2px solid var(--accent-soft);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+.together-avatars i:first-child {
+  margin-left: 0;
+}
+
+.together-panel {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(340px, calc(100vw - 24px));
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: var(--s4);
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  font-size: 13px;
+  text-align: left;
+}
+.together-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+.together-head strong {
+  font-size: 14px;
+}
+.together-body,
+.together-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.together-section + .together-section {
+  padding-top: var(--s3);
+  border-top: 1px solid var(--border-subtle);
+}
+.together-panel .hint {
+  margin: 0;
+}
+.together-panel h4 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.together-row,
+.together-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+.together-actions {
+  justify-content: flex-start;
+}
+.together-panel .btn.small {
+  height: 26px;
+  padding: 0 9px;
+}
+.together-panel .link-btn {
+  align-self: flex-start;
+}
+.together-panel .together-actions .link-btn {
+  align-self: center;
+}
+.together-panel .link-btn.danger {
+  color: var(--danger);
+}
+
+/* scelta iniziale: due schede grandi */
+.together-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.together-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--btn-bg);
+  color: var(--text);
+  text-align: left;
+  transition: border-color 0.12s, background-color 0.12s;
+}
+.together-choice:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.together-choice small {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.together-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+.together-field input {
+  height: 30px;
+}
+.together-check {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.together-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+/* l'invito resta su una riga: andare a capo dentro la chiave la renderebbe difficile da leggere */
+.together-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s2);
+}
+.together-invite code {
+  align-self: stretch;
+  padding: 6px 8px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--panel-2);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow-x: auto;
+  user-select: text;
+}
+.together-ok {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin: 0;
+  padding: 7px 10px;
+  border-radius: var(--r);
+  background: color-mix(in srgb, var(--ok) 12%, transparent);
+}
+.together-ok i {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.together-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s2);
+  padding: 8px 10px;
+  border-radius: var(--r);
+  background: color-mix(in srgb, var(--warn) 14%, transparent);
+}
+.together-notice p {
+  margin: 0;
+}
+
+/* nome del gruppo in alto: è anche la porta per «Server e invito» */
+.together-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 60%;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.together-status:hover {
+  background: var(--hover);
+}
+.together-status i {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+.together-status.online i {
+  background: var(--ok);
+}
+.together-status.connecting i {
+  background: var(--warn);
+}
+
+.together-people,
+.together-rooms,
+.together-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.together-people li {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.together-people i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+/* stanze: nome, chi c'è e chi l'ha creata; a destra «Entra» e, per chi può chiuderla, la × */
+.together-rooms {
+  max-height: 260px;
+  overflow-y: auto;
+}
+.together-rooms li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 7px 8px;
+  border-radius: var(--r);
+  background: var(--panel-2);
+}
+.together-room-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  align-self: stretch;
+}
+.together-room-main span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.together-room-main strong,
+.together-room-main small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.together-room-main small,
+.together-here small {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+/* × accanto a «Entra», solo per chi può chiudere la stanza: discreta finché non ci si passa sopra */
+/* (non è un .tool: il pannello sta dentro la barra, e i .tool della barra hanno un altro aspetto) */
+.together-room-main .together-room-slot {
+  flex: none;
+  width: 22px;
+}
+.together-room-close {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: -4px;
+  border-radius: var(--r);
+  color: var(--faint);
+  transition: background-color 0.1s, color 0.1s;
+}
+.together-room-close:hover:not(:disabled),
+.together-room-close[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--danger) 11%, transparent);
+  color: var(--danger);
+}
+.together-room-close:disabled {
+  opacity: 0.35;
+}
+/* dentro la stanza: «Esci» a sinistra, «Chiudi la stanza» a destra */
+.together-panel .together-room-actions {
+  justify-content: space-between;
+}
+.together-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  align-self: stretch;
+  padding: 8px 10px;
+  border-radius: var(--r);
+  background: color-mix(in srgb, var(--danger) 9%, transparent);
+}
+/* la stanza in cui sei: il nome in evidenza */
+.together-here {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.together-here strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.together-here h4 {
+  margin-bottom: 2px;
+}
+.together-new {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.together-comments {
+  max-height: 240px;
+  overflow-y: auto;
+}
+.together-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s2);
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: var(--r);
+  background: var(--panel-2);
+  color: var(--text);
+  text-align: left;
+}
+.together-comment:hover {
+  background: var(--hover);
+}
+.together-comment.done {
+  color: var(--muted);
+}
+.together-comment span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.together-comment small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+.together-pin {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 3px;
+  background: var(--warn);
+  color: #fff;
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+}
+.together-comment.done .together-pin {
+  background: var(--faint);
+}
+
+.live-cursor {
+  position: absolute;
+  z-index: 13;
+  padding: 1px 7px;
+  border-radius: 0 8px 8px 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: left 0.08s linear, top 0.08s linear;
+}

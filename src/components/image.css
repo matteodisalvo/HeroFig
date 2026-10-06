@@ -1,0 +1,136 @@
+/* Pannello "Immagine": file dal computer oppure immagine generata da un diffusion model. */
+
+.image-wrap {
+  display: inline-flex;
+}
+.image-panel {
+  position: fixed;
+  z-index: 60;
+  top: 76px;
+  width: min(360px, calc(100vw - 24px));
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s4);
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  animation: pop 0.12s ease-out;
+}
+.image-panel .hint {
+  margin: 0;
+}
+.image-panel .btn.full {
+  margin-top: 0;
+}
+.image-panel textarea {
+  resize: vertical;
+}
+.image-sep {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin: var(--s1) 0;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.image-sep::before,
+.image-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.image-result {
+  width: 100%;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  background: var(--paper);
+}
+.image-busy {
+  padding: var(--s3);
+  border-radius: var(--r);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+.image-error {
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r);
+  background: rgba(207, 59, 49, 0.1);
+  /* un po' verso il colore del testo: leggibile sul fondo rosato (almeno 4,5:1) in chiaro e in scuro */
+  color: color-mix(in srgb, var(--danger) 80%, var(--text));
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+.image-actions {
+  display: flex;
+  gap: var(--s2);
+}
+
+/* chiave di Hugging Face: riquadro compatto la prima volta, poi una riga in fondo al pannello */
+.image-key {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.image-key .link-btn {
+  align-self: flex-start;
+  margin-left: -4px;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+}
+.image-key-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.image-key-field input {
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 12.5px;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+.image-key-field input:hover {
+  border-color: var(--faint);
+}
+.image-key-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+.image-key-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px var(--s1);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--border-subtle);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.image-key-status .dot {
+  flex: none;
+  margin-right: 2px;
+}
+/* «Cambia chiave» e «Rimuovi» vanno a capo insieme, a destra */
+.image-key-links {
+  display: inline-flex;
+  gap: var(--s1);
+  margin-left: auto;
+  white-space: nowrap;
+}

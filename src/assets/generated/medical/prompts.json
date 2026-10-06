@@ -1,0 +1,141 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "Synthetic illustrations for scientific diagrams; not patient data.",
+  "processing": "Ridotte a 1024 px sul lato lungo (Lanczos, alpha premoltiplicato): le immagini opache sono JPEG qualità 95 senza sottocampionamento del colore, quelle con trasparenza restano PNG RGBA.",
+  "assets": [
+    {
+      "id": "he",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram library, preset he.\nPrimary request: recreate an H&E histology image, realistic brightfield microscopy of a colon tissue section.\nSubject: irregular glandular crypt cross-sections with open pale lumens, columnar epithelium with small dark purple hematoxylin nuclei, eosin-pink connective stroma and scattered stromal nuclei. Natural biological variation and optical texture; fine credible microscopic detail.\nComposition/framing: one rectangular micrograph, landscape 6:5 ratio, tissue fills entire frame edge to edge, no inset, no collage, no device.\nColor palette: realistic pale pink eosin and purple hematoxylin, matching the existing medical asset.\nConstraints: synthetic illustrative imagery, no patient data, no labels, no text, no scale bar, no arrows, no border, no watermark. Professional microscopy visual, not a diagram of cells.",
+      "file": "he.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "autofluo",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'autofluo'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Unstained tissue autofluorescence microscopy: irregular colonic gland crypts with dark lumens, subdued olive-green and yellow-green endogenous emission in stromal fibers and cell granules on nearly black background. Fine grain and natural uneven emission, genuine microscopy texture, no neon sci-fi.",
+      "file": "autofluo.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "autofluogray",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'autofluogray'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Grayscale single-channel autofluorescence of unstained tissue: gland crypts with dark lumens, moderately luminous silver-gray stromal fibers and cellular granules on black. Monochrome only, fine sensor grain, natural irregular biological detail, no artificial diagrams.",
+      "file": "autofluogray.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "unstained",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'unstained'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Brightfield microscopy of a thin unstained colon tissue section, translucent pale gray and faint warm ivory tissue; low-contrast glands and open lumens with delicate barely visible cellular contours. NO purple or pink staining. Faint natural refractive texture against nearly white transmitted light.",
+      "file": "unstained.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "mpm",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'mpm'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Multiphoton microscopy composite: bundled wavy fine collagen fibers represented by green second harmonic signal, with scattered irregular magenta cells from two-photon autofluorescence. Black background, realistic fine photon grain and heterogeneous brightness, fibers run through tissue, credible optical-section detail. Green collagen and magenta cells only, no labels.",
+      "file": "mpm.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "ihc",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'ihc'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Immunohistochemistry brightfield tissue section. Brown DAB positive staining in a subset of cells, pale blue hematoxylin nuclear counterstain, off-white tissue background, natural dense irregular cellular distribution and realistic glandular tissue detail. Authentic microscopic texture, no cartoons.",
+      "file": "ihc.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "fluor",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'fluor'.\nSubject and composition: Landscape 6:5 micrograph, edge to edge. Confocal immunofluorescence microscopy of cultured mammalian cells: small blue DAPI nuclei inside irregular green actin-rich cell bodies, fine green cytoskeletal filaments, sparse tiny red puncta. Black background, naturally varied spacing and cell shape, realistic microscopy fluorescence, no drawn outlines.",
+      "file": "fluor.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "wsi",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'wsi'.\nSubject and composition: Landscape 4:3. A single whole-slide tissue image as viewed from above in a digital pathology viewer without any viewer UI. Irregular elongated pink-purple H&E tissue section surrounded by white slide space, the tissue has credible fine histology texture. Thin slate-gray rectangular tile grid (six rows by eight columns) covers tissue region; exactly three selected tiles have fine red outlines. Tissue comfortably fits, no physical glass slide hardware, no labels.",
+      "file": "wsi.jpg",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "id": "ct",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'ct'.\nSubject and composition: Landscape 6:5. Single axial CT slice of the chest in lung window, anatomically plausible thoracic cross-section at heart level: two dark lung fields with fine white branching pulmonary vessels, central mediastinum and heart, surrounding gray chest wall, posterior vertebral body and rib sections. Entire cross-section centered within black field, photographic CT texture, neutral grayscale only, no overlays.",
+      "file": "ct.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "mri",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'mri'.\nSubject and composition: Landscape 6:5. Single axial T1-weighted brain MRI slice, plausible bilateral hemispheres, realistic cortical sulci and gray-white differentiation, dark lateral ventricles near center. One small bright enhancing lesion in a frontal hemisphere. Complete oval head cross-section centered with black surrounding field. Grayscale medical acquisition appearance and fine subtle noise, no colored overlays.",
+      "file": "mri.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "ctseg",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'ctseg'.\nSubject and composition: Landscape 6:5. Single realistic axial chest CT image in lung window, complete centered thoracic cross-section on black background, two dark lung fields with fine branching vessels, mediastinum, ribs and posterior vertebra. AI segmentation overlay: thin precise green outlines trace both lung boundaries, and a restrained translucent coral-red fill covers the heart. Underlying CT remains clearly visible, no text or legend.",
+      "file": "ctseg.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "mriseg",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'mriseg'.\nSubject and composition: Landscape 6:5. Single axial T1-weighted brain MRI, complete centered head section on black, realistic cortical sulci and ventricles. A focal lesion in one frontal hemisphere has a localized transparent yellow edema segmentation region surrounding a smaller red tumor-core overlay; overlays are compact and anatomy remains visible. Everything else grayscale MRI, no legend.",
+      "refinementPrompt": "Use case: precise-object-edit\nAsset type: synthetic MRI segmentation PNG for a scientific diagram library.\nInput images: Image 1 is the edit target.\nPrimary request: change ONLY the currently transparent background outside the oval head to solid opaque pure black (#000000). Preserve the image size, exact brain anatomy, grayscale MRI texture, yellow and red lesion segmentation overlays, head scale and position unchanged.\nConstraints: final image must be opaque across the whole rectangular canvas, including all four corners. No transparency outside the head; no added objects, text, border, or watermark. Keep all interior anatomy and overlays unchanged.",
+      "file": "mriseg.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "xray",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'xray'.\nSubject and composition: Landscape 6:5 frame. Single frontal PA chest radiograph with entire thorax centered, both lungs visible from apices to costophrenic angles, ribs, clavicles, spine, heart silhouette and diaphragms in natural X-ray proportions. Realistic monochrome radiographic density and fine grain on dark field. No arrows, no orientation markers, no metadata.",
+      "file": "xray.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "us",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'us'.\nSubject and composition: Landscape 6:5. Single grayscale abdominal B-mode ultrasound sector image with a fan-shaped insonation field, bright superficial interfaces, granular acoustic speckle, heterogeneous soft tissue and a small smooth dark fluid-filled oval structure with subtle posterior acoustic enhancement. Black outside the sector. Authentic sonographic texture, no colorful Doppler, no anatomy labels.",
+      "file": "us.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "fundus",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'fundus'.\nSubject and composition: Landscape 6:5. Single circular retinal fundus photograph centered against black, orange-red retinal tissue with fine natural texture, a pale yellow optic disc nasal to center, thin branching dark red vessels radiating from optic disc and curving around a darker macula. Credible ophthalmic fundus photography, whole circular field visible, no overlays.",
+      "file": "fundus.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "oct",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'oct'.\nSubject and composition: Landscape 3:2. Single grayscale retinal OCT B-scan, horizontal cross-section through central fovea. Realistic layered retina with a modest foveal depression, alternating fine bright and dark retinal bands, bright outer retinal/RPE line and dim granular choroid beneath. Black vitreous above, authentic fine speckle texture, frame filled with the scan, no graph axes.",
+      "file": "oct.jpg",
+      "width": 1024,
+      "height": 683
+    },
+    {
+      "id": "derm",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'derm'.\nSubject and composition: Landscape 6:5. Dermatoscopic close-up of a single benign-looking brown pigmented melanocytic nevus centered in a circular skin field on black. Tan skin texture, restrained natural brown pigment network with a slightly irregular soft boundary and some fine short hairs. Realistic optical dermoscopy photograph, not a diagram, no rulers or markers.",
+      "file": "derm.jpg",
+      "width": 1024,
+      "height": 853
+    },
+    {
+      "id": "ecg",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'ecg'.\nSubject and composition: Landscape 2:1. A clean synthetic single-lead electrocardiogram strip on very pale pink ECG graph paper, thin pale red minor square grid and slightly stronger major grid every five squares. One crisp near-black continuous trace with three evenly spaced plausible normal P-QRS-T complexes, each with small P wave, sharp narrow upright R peak, small negative S wave and broad positive T wave. Flat baseline between beats; no extra waveforms or labels.",
+      "file": "ecg.jpg",
+      "width": 1024,
+      "height": 512
+    },
+    {
+      "id": "scanseg",
+      "prompt": "Use case: scientific-educational\nAsset type: standalone synthetic medical imaging bitmap for the TensorFig scientific diagram asset library.\nStyle/medium: realistic acquisition-like medical imaging, credible fine texture, professional educational illustration.\nConstraints: one single image only, no collage, no device, no patient data, no text, no labels, no lettering, no scale bar, no watermark, no ornamental border. Synthetic visual for diagrams, not actual patient data.\nPrimary request: recreate the medical asset 'scanseg'.\nSubject and composition: Landscape 6:5. A standalone binary medical segmentation mask for a thoracic axial slice: two solid white anatomically plausible lung silhouettes, one on either side of a central black mediastinal gap, crisp smooth edges on pure black background. Separate left and right lung shapes with subtle natural asymmetry and medial concavity. Flat binary pixels only, no grayscale tissue texture, no border, no text.",
+      "file": "scanseg.jpg",
+      "width": 1024,
+      "height": 853
+    }
+  ]
+}

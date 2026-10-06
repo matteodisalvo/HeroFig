@@ -1,0 +1,114 @@
+{
+  "name": "herofig",
+  "productName": "HeroFig",
+  "version": "1.0.0",
+  "description": "Figures for scientific papers, drawn at the size they will be printed.",
+  "license": "MIT",
+  "author": "Matteo Di Salvo",
+  "homepage": "https://github.com/matteodisalvo/herofig",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matteodisalvo/herofig.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matteodisalvo/herofig/issues"
+  },
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "vite",
+    "typecheck": "tsc --noEmit",
+    "check": "node --import tsx scripts/check-library.ts && node --import tsx scripts/check-generated-assets.ts && node --import tsx scripts/check-i18n.ts && node --import tsx scripts/check-onboarding.ts && node --import tsx scripts/check-profile.ts && node --import tsx scripts/check-feedback.ts && node --import tsx scripts/check-welcome-cloud.ts && node scripts/check-feedback-desktop.cjs",
+    "build": "tsc --noEmit && vite build",
+    "start": "npm run build && node scripts/dev.mjs --prod",
+    "dist": "npm run build && node scripts/dist.mjs",
+    "dist:mac": "npm run build && node scripts/dist.mjs --dmg",
+    "dist:win": "npm run build && node scripts/dist.mjs --win",
+    "space": "npm run build && node scripts/space.mjs"
+  },
+  "build": {
+    "appId": "it.uniroma1.herofig",
+    "productName": "HeroFig",
+    "copyright": "Copyright © 2026 Matteo Di Salvo",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "onlyLoadAppFromAsar": true
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "HeroFig-${version}-macOS-${arch}.${ext}",
+      "identity": "-",
+      "category": "public.app-category.graphics-design",
+      "hardenedRuntime": false,
+      "icon": "build/icon.icns"
+    },
+    "dmg": {
+      "title": "HeroFig ${version}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "HeroFig-${version}-Windows-Setup.${ext}",
+      "shortcutName": "HeroFig"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "hfig",
+          "tfig",
+          "mlsketch"
+        ],
+        "name": "HeroFig",
+        "role": "Editor"
+      }
+    ],
+    "directories": {
+      "buildResources": "build"
+    }
+  },
+  "dependencies": {
+    "@huggingface/inference": "^4.13.30",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  }
+}

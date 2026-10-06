@@ -1,0 +1,113 @@
+/* Finestra «Pacchetti» e richiami nella libreria. */
+
+.modal.packs {
+  width: min(640px, calc(100vw - 48px));
+}
+.modal.packs > .hint {
+  margin: 0 0 var(--s3);
+}
+.packs-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.pack {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.pack.on {
+  background: var(--panel-2);
+}
+.pack-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pack-text span {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+}
+.pack-text small {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+.pack .btn {
+  flex: none;
+  min-width: 84px;
+}
+.packs .btn.primary-fill {
+  border-color: transparent;
+  background: var(--accent);
+  color: #fff;
+}
+.packs .btn.primary-fill:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.packs-ideas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--s2);
+}
+.packs-ideas button {
+  padding: 3px 10px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.packs-ideas button:hover,
+.packs-ideas button.on {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.packs-feedback { padding: var(--s3); margin-bottom: var(--s3); background: var(--panel-2); border: 1px solid var(--border); border-radius: var(--r-lg); }
+.packs-feedback .hint { margin: 4px 0 10px; }
+.packs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.packs-actions a.btn {
+  text-decoration: none;
+}
+
+/* nella libreria: pacchetti non installati e invito a chiedere */
+.lib-packs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  margin: var(--s3) 0 var(--s4);
+  padding: var(--s3);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+.lib-packs strong {
+  color: var(--text);
+}
+.lib-pack-hit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin-top: var(--s2);
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: var(--fs-sm);
+  text-align: left;
+}

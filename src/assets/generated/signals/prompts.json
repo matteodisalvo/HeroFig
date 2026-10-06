@@ -1,0 +1,322 @@
+{
+  "category": "Segnali",
+  "mode": "built-in image_gen",
+  "processing": "Ridotte a 1024 px sul lato lungo (Lanczos, alpha premoltiplicato): le immagini opache sono JPEG qualità 95 senza sottocampionamento del colore, quelle con trasparenza restano PNG RGBA.",
+  "assets": [
+    {
+      "id": "sp-sine",
+      "name": "Sinusoide",
+      "prompt": "Use case: scientific-educational\nAsset type: isolated raster asset for a scientific diagram library, id sp-sine.\nPrimary request: a single clean sinusoidal waveform plot, exactly two full sine cycles with uniform amplitude and wavelength, beginning and ending on its baseline.\nStyle/medium: crisp flat scientific plotting, fine smooth antialiased linework, legible at small sizes, no texture or shading.\nComposition: wide 110:54 aspect ratio, waveform centered, using nearly the full canvas with a small safety margin; thin gray #8A9099 horizontal time axis through center and vertical axis at left, subtle arrowheads, no grid.\nColor palette: one blue #2F6FB2 waveform.\nBackground: genuinely transparent PNG alpha, including all space between strokes.\nConstraints: single plot only; no words, letters, numbers, formulas, title, labels, legend, watermark, border, checkerboard, shadows or decorative elements.",
+      "inspection": "Two full blue sine cycles and gray arrowed axes, no labels; transparent background displayed.",
+      "file": "sp-sine.png",
+      "width": 1024,
+      "height": 503
+    },
+    {
+      "id": "sp-chirp",
+      "name": "Chirp",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-chirp.\nPrimary request: One continuous constant-amplitude chirp waveform: starts with broad slow oscillations at left, then wavelength smoothly shrinks and frequency rises toward right, about six cycles overall.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:54 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #7E57C2.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-chirp.png",
+      "width": 1024,
+      "height": 461
+    },
+    {
+      "id": "sp-square",
+      "name": "Onda quadra",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster square-wave asset sp-square.\nPrimary request: exactly three periods of a blue square wave drawn with one thin blue #2F6FB2 line, with horizontal plateaus at +1 and -1 and instantaneous vertical transitions. Start at positive plateau; after the third negative plateau, stop; do not show any part of a fourth period.\nComposition: wide 110:54 aspect, waveform centered across almost entire width. Thin gray #8A9099 horizontal zero axis through center and vertical axis at far left, small arrowheads.\nStyle: precise minimal flat mathematical line drawing, uniform thin stroke, crisp clean antialiasing. LINE ART ONLY. Absolutely no filled areas, no gradient, no shading or glow.\nBackground: genuinely transparent PNG alpha throughout the spaces between all lines, including all space above and below the zero axis. There is no fill under the signal.\nConstraints: one plot; no words, letters, numbers, formulas, labels, title, legend, border, texture or watermark.",
+      "inspection": "Three complete unfilled square-wave periods verified.",
+      "file": "sp-square.png",
+      "width": 1024,
+      "height": 502
+    },
+    {
+      "id": "sp-noisy",
+      "name": "Segnale rumoroso",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-noisy.\nPrimary request: A noisy sinusoidal waveform showing two broad sine cycles with small irregular jagged fluctuations around its smooth underlying oscillation; signal stays one continuous fine trace.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:54 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #3A3F47.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-noisy.png",
+      "width": 1024,
+      "height": 461
+    },
+    {
+      "id": "sp-am",
+      "name": "Modulazione AM",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-am.\nPrimary request: An amplitude-modulated sinusoidal signal with about fourteen evenly spaced carrier cycles; a smooth slow amplitude envelope waxes and wanes through one cycle; show subtle dashed blue-gray upper and lower envelope curves. Carrier frequency stays constant.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:56 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-am.png",
+      "width": 1024,
+      "height": 441
+    },
+    {
+      "id": "sp-fm",
+      "name": "Modulazione FM",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-fm.\nPrimary request: A frequency-modulated sinusoidal signal with constant amplitude, about ten cycles whose spacing smoothly varies from sparse to dense and back to sparse. No envelope curves.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:56 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2E8B57.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-fm.png",
+      "width": 1024,
+      "height": 441
+    },
+    {
+      "id": "sp-impulses",
+      "name": "Treno di impulsi",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-impulses.\nPrimary request: Exactly seven equally spaced identical vertical upward impulse arrows rising from a common horizontal baseline. All impulses same height and thin stroke; arrowheads distinguish mathematical Dirac impulses from stems.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:54 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #3A3F47.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-impulses.png",
+      "width": 1024,
+      "height": 461
+    },
+    {
+      "id": "sp-speech",
+      "name": "Audio (parlato)",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-speech.\nPrimary request: A speech waveform formed by a dense irregular oscillating blue trace, six syllable-like bursts separated by near-silent pauses. Bursts vary organically in amplitude and duration, symmetric around a central baseline.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:56 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-speech.png",
+      "width": 1024,
+      "height": 441
+    },
+    {
+      "id": "sp-xn",
+      "name": "Segnale discreto",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-xn.\nPrimary request: A discrete-time stem plot with exactly twelve evenly spaced thin blue vertical stems and small filled blue circular markers at their endpoints, sampling one and a half cycles of a sine signal. Show positive and negative samples. No connecting curve between endpoints.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:58 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-xn.png",
+      "width": 1024,
+      "height": 495
+    },
+    {
+      "id": "sp-hn",
+      "name": "Risposta impulsiva",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-hn.\nPrimary request: A causal exponentially decaying impulse response as twelve evenly spaced red samples: first two zero-value baseline points, third sample tallest, remaining nine strictly positive stems descending exponentially toward zero. Small filled circular endpoints. No curve linking them.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 110:56 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #C0392B.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-hn.png",
+      "width": 1024,
+      "height": 521
+    },
+    {
+      "id": "sp-sampling",
+      "name": "Campionamento",
+      "prompt": "Use case: precise-object-edit\nAsset type: sampled sinusoid plot raster asset sp-sampling.\nInput image: edit target is the provided sampled sine plot.\nPrimary request: Remove exactly the extra blue dot that incorrectly lies ON THE ZERO BASELINE, directly above the negative blue sample point near 44 percent of the plot width. This baseline dot is wrong because the sample's value there is negative. Keep the lower dot ON the dashed sine curve and its vertical stem. Delete only that one erroneous baseline dot and restore the thin gray baseline behind it.\nInvariants: preserve all other twelve sample markers, every vertical stem, the dashed blue sinusoidal curve, gray axes and arrowheads, original colors, exact aspect ratio, composition and size. Preserve genuine transparent alpha throughout the background. No text, no added marks, no shading or effects.",
+      "inspection": "Erroneous baseline dot removed; twelve true sample markers preserved.",
+      "file": "sp-sampling.png",
+      "width": 1024,
+      "height": 473
+    },
+    {
+      "id": "sp-quantized",
+      "name": "Quantizzazione",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-quantized.\nPrimary request: A red quantized staircase approximating one and a half sine cycles with twelve equal-width sample-and-hold steps and red sample dots. A fine pale-gray smooth sine reference passes behind it. Faint dashed horizontal quantization-level guides, no numbers. Steps are horizontal joined by vertical edges, positive and negative.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:64 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #C0392B.\nAxes: thin gray #8A9099 horizontal zero baseline through center and vertical axis at left, small arrowheads. No grid.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-quantized.png",
+      "width": 1024,
+      "height": 504
+    },
+    {
+      "id": "sp-spectrum",
+      "name": "Spettro",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-spectrum.\nPrimary request: A positive amplitude spectrum with exactly three narrow Gaussian peaks of differing heights on a faint low decaying floor. Blue smooth outline with subtle pale blue fill under the curve.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 110:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and transparent composition visually checked.",
+      "file": "sp-spectrum.png",
+      "width": 1024,
+      "height": 559
+    },
+    {
+      "id": "sp-harmonics",
+      "name": "Armoniche",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-harmonics.\nPrimary request: A harmonic amplitude spectrum with exactly six narrow sharp peaks at uniformly spaced harmonic frequencies, descending geometrically in height from left to right. Purple smooth outline, subtle pale purple fill below.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #7E57C2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-harmonics.png",
+      "width": 1024,
+      "height": 512
+    },
+    {
+      "id": "sp-replicas",
+      "name": "Spettro campionato",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-replicas.\nPrimary request: A sampled frequency spectrum with three identical smooth rounded compact lobes equally spaced and clearly separated without overlap: central blue lobe at zero with pale blue fill, two dashed lighter-blue spectral replica lobes on either side. Horizontal axis across bottom and vertical axis through central lobe.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 150:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-replicas.png",
+      "width": 1024,
+      "height": 409
+    },
+    {
+      "id": "sp-aliasing",
+      "name": "Aliasing",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-aliasing.\nPrimary request: An aliasing spectrum: five identical evenly spaced rounded lobes, neighboring lobes overlap at their skirts. Central lobe solid blue with pale blue fill; neighboring replicas dashed lighter blue. A fine red curve traces the sum of these overlapping copies, highlighting the raised overlapping valley regions. Frequency axis along bottom with vertical axis centered.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 150:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-aliasing.png",
+      "width": 1024,
+      "height": 409
+    },
+    {
+      "id": "sp-psd",
+      "name": "PSD",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-psd.\nPrimary request: A power spectral density trace: low gently decreasing rough noise floor with exactly three distinct very narrow sharp spectral peaks rising above it at irregular positions and different heights. Single charcoal fine line, no area fill.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 120:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #3A3F47.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-psd.png",
+      "width": 1024,
+      "height": 512
+    },
+    {
+      "id": "sp-spectrogram",
+      "name": "Spettrogramma",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-spectrogram.\nPrimary request: A scientifically plausible speech spectrogram: dark black-purple backdrop, discrete voiced syllable regions separated by silence, fine horizontal harmonic stacks whose brightness is modulated by broad formant bands and voiced pitch varying slightly over time. Magma colormap from black-purple through magenta-red to orange-cream. Time is horizontal, frequency upward; thin crisp raster heatmap texture. No axes, colorbar, frame or text.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:86 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: magma.\nBackground: heatmap fills the entire rectangular image edge to edge, dark scientific heatmap background as specified, no transparent padding.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-spectrogram.jpg",
+      "width": 1024,
+      "height": 677
+    },
+    {
+      "id": "sp-logmel",
+      "name": "Log-mel",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-logmel.\nPrimary request: A log-mel speech spectrogram with visible time columns and nonuniform frequency-band texture, coherent horizontal formant bands concentrated at lower rows and multiple separated syllable-like regions. Viridis palette dark purple to blue-teal-green to yellow. Rectangular heatmap only, no axes, labels, colorbar or frame.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:86 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: viridis.\nBackground: heatmap fills the entire rectangular image edge to edge, dark scientific heatmap background as specified, no transparent padding.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-logmel.jpg",
+      "width": 1024,
+      "height": 677
+    },
+    {
+      "id": "sp-mfccimg",
+      "name": "MFCC",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-mfccimg.\nPrimary request: An MFCC coefficient heatmap, exactly 13 horizontal coefficient rows and about 48 time columns; each row varies smoothly across time with realistic signed coefficients. First row mostly strong blue negative values; remaining rows alternate red positive and blue negative blocks around neutral pale gray. Coolwarm scientific diverging palette. Crisp rectangular cells, no gaps, no axes, labels, colorbar or frame.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:70 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: coolwarm.\nBackground: heatmap fills the entire rectangular image edge to edge, dark scientific heatmap background as specified, no transparent padding.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-mfccimg.jpg",
+      "width": 1024,
+      "height": 551
+    },
+    {
+      "id": "sp-scalogram",
+      "name": "Scalogramma (CWT)",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-scalogram.\nPrimary request: A continuous wavelet scalogram of a nonstationary signal, featuring bright smooth rising chirp ridges and localized broad low-frequency bursts on dark black-purple background. Inferno palette violet-red-orange-yellow. Include a subtle white dashed cone-of-influence curve at left and right edges narrowing valid time range near low-frequency bottom. Scientific raster heatmap, no axes, colorbar, text or frame.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:86 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: inferno.\nBackground: heatmap fills the entire rectangular image edge to edge, dark scientific heatmap background as specified, no transparent padding.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-scalogram.jpg",
+      "width": 1024,
+      "height": 677
+    },
+    {
+      "id": "sp-melbank",
+      "name": "Banco mel",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-melbank.\nPrimary request: Exactly ten overlapping triangular mel filter responses all with equal peak heights. Their centers have exponentially increasing spacing left to right; first triangles narrow and packed on left, last triangles broad on right. Adjacent triangles meet at their midpoint slopes and alternate blue and orange outlines with very pale translucent matching fills.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:56 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2 and #D9822B.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-melbank.png",
+      "width": 1024,
+      "height": 441
+    },
+    {
+      "id": "sp-stft",
+      "name": "Finestre STFT",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-stft.\nPrimary request: Exactly five overlapping equal-height Hann windows with fifty percent overlap, smooth raised-cosine domes with zero-valued endpoints and flat horizontal tangent at base. Windows alternate blue and orange outlines with very pale fills. A single fine charcoal oscillatory signal runs horizontally underneath the window outlines, at low amplitude and vertically around the middle of their height. Only a bottom horizontal time axis, no vertical axis.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 140:60 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2 and #D9822B.\nAxis: thin gray bottom horizontal axis with a small arrowhead to right.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Subject, palette and composition visually checked.",
+      "file": "sp-stft.png",
+      "width": 1024,
+      "height": 439
+    },
+    {
+      "id": "sp-lowpass",
+      "name": "Passa-basso",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-lowpass.\nPrimary request: A fourth-order low-pass magnitude frequency response: starts flat at full height on left, smoothly rolls down around forty percent of horizontal width and approaches zero at right. Blue line with subtle pale blue fill underneath, fine red dashed vertical cutoff guide at roll-off position.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 96:64 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-lowpass.png",
+      "width": 1024,
+      "height": 683
+    },
+    {
+      "id": "sp-highpass",
+      "name": "Passa-alto",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-highpass.\nPrimary request: A fourth-order high-pass magnitude frequency response: starts at zero on left, smoothly rises around forty percent of horizontal width, approaching a flat full-height passband on right. Blue line with subtle pale blue fill underneath, fine red dashed vertical cutoff guide at transition.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 96:64 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-highpass.png",
+      "width": 1024,
+      "height": 683
+    },
+    {
+      "id": "sp-bandpass",
+      "name": "Passa-banda",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-bandpass.\nPrimary request: A smooth third-order band-pass magnitude response, near zero at both ends with a single wide flat-topped central passband and steep rounded shoulders. Blue curve, subtle pale blue area beneath it, two fine red dashed vertical cutoff guides at both shoulders.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 96:64 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-bandpass.png",
+      "width": 1024,
+      "height": 683
+    },
+    {
+      "id": "sp-notch",
+      "name": "Notch",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-notch.\nPrimary request: A narrow notch frequency response: flat near full height across almost entire width, with a single symmetric extremely narrow deep V-shaped smooth dip to zero at center. Blue curve with pale blue fill below it, one fine red dashed vertical guide at notch center.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 96:64 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nAxes: thin gray #8A9099 horizontal baseline along bottom, vertical magnitude axis at left, small arrowheads.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-notch.png",
+      "width": 1024,
+      "height": 683
+    },
+    {
+      "id": "sp-polezero",
+      "name": "Poli e zeri",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-polezero.\nPrimary request: A clean square z-plane pole-zero diagram, thin gray orthogonal central axes with arrowheads and a gray unit circle. Four blue x-shaped pole marks inside circle arranged as two conjugate pairs on the right half; four red outlined open-circle zero marks as two conjugate pairs around the unit circle left half. Bilateral symmetry across horizontal real axis. No numerals or text.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 80:80 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-polezero.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "sp-qam",
+      "name": "Costellazione QAM",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-qam.\nPrimary request: A 16-QAM constellation: exactly sixteen uniform filled blue circles arranged in a perfectly even four-by-four Cartesian square grid, four points per row and column. Gray central horizontal and vertical axes run between the middle rows and columns, arrowheads right and up; no point lies on an axis.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 80:80 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-qam.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "sp-psk",
+      "name": "Costellazione PSK",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-psk.\nPrimary request: An 8-PSK constellation: exactly eight filled blue circles uniformly spaced on a faint gray dashed circular guide. Points offset 22.5 degrees from horizontal axis, so none lies on either axis. Thin gray central orthogonal axes with arrowheads.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 80:80 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-psk.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "sp-qamrx",
+      "name": "QAM ricevuta",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-qamrx.\nPrimary request: A received noisy 16-QAM constellation: exactly sixteen small diffuse clusters of blue dots, cluster centers form an even four-by-four square grid. About fourteen tiny blue points per cluster jitter closely around a single small red center marker. Thin pale-gray dashed decision boundaries and central orthogonal gray axes. Clusters remain clearly separated.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 80:80 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-qamrx.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "sp-eye",
+      "name": "Diagramma a occhio",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-eye.\nPrimary request: An eye diagram of a clean binary digital communication signal with pulse shaping: thirty fine blue overlapping time-aligned smooth waveform traces, producing one wide clearly open central eye, symmetric above and below horizontal midline; transitions converge near left and right edges. Faint gray dashed horizontal threshold and central vertical sampling-time guide. No enclosing frame.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 110:72 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #2F6FB2.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-eye.png",
+      "width": 1024,
+      "height": 669
+    },
+    {
+      "id": "sp-eeg",
+      "name": "EEG multicanale",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-eeg.\nPrimary request: Exactly six vertically stacked independent EEG traces, irregular low-amplitude quasi-rhythmic waves with realistic mixed frequencies, same length, no overlap. Fine charcoal strokes. At left of each trace small clean charcoal sans-serif channel names, top to bottom exactly: Fz, C3, Cz, C4, Pz, Oz. No other text, axes or grid.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 130:90 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #3A3F47.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. Only the explicitly requested electrode labels are allowed. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-eeg.png",
+      "width": 1024,
+      "height": 708
+    },
+    {
+      "id": "sp-headcap",
+      "name": "Montaggio EEG",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-headcap.\nPrimary request: A top-down schematic EEG electrode cap: round pale peach head #FBEFE6 with slim brown #8C6A55 outline, small ears at left and right and a small triangular nose pointing up. Nineteen white circular electrode markers with brown outlines arranged in standard 10-20 placement: 2 frontal-polar; 5 frontal; 5 temporal-central; 5 posterior-temporal-parietal; 2 occipital. Faint brown central cross and inner circle guide. No letters or labels.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 76:84 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #8C6A55.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. No words, letters, numbers, formulas, titles, labels or legends. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-headcap.png",
+      "width": 925,
+      "height": 1024
+    },
+    {
+      "id": "sp-headcap10-20",
+      "name": "Montaggio 10-20 (nomi)",
+      "prompt": "Use case: scientific-educational\nAsset type: single isolated raster asset for a scientific diagram library, id sp-headcap10-20.\nPrimary request: A top-down schematic EEG 10-20 electrode map: pale peach circular head #FBEFE6 with thin brown outline, ears at sides and nose at top. Nineteen white circular electrodes with brown outlines. Exact labels inside markers in crisp dark charcoal sans-serif. Rows from top: Fp1, Fp2; next F7, F3, Fz, F4, F8; next T3, C3, Cz, C4, T4; next T5, P3, Pz, P4, T6; bottom O1, O2. Central Fz-Cz-Pz aligned vertically; left-right symmetry. Faint inner circle and orthogonal central guides. Labels exactly once each, no other text.\nStyle/medium: precise flat scientific illustration, crisp smooth antialiased linework, clean publication aesthetic, legible at small sizes; no artistic texture, lighting or 3D.\nComposition: 170:186 canvas aspect ratio, subject uses nearly full canvas with a small safety margin, balanced framing.\nColor palette: #8C6A55.\nBackground: genuinely transparent PNG alpha in all empty spaces, not a painted checkerboard. Preserve subtle colored fills where specified.\nConstraints: single asset only. Only the explicitly requested electrode labels are allowed. No watermark, extra panel, drop shadow, border or decoration.",
+      "inspection": "Reviewed on white contact sheet; correct subject, counts and labels.",
+      "file": "sp-headcap10-20.png",
+      "width": 936,
+      "height": 1024
+    }
+  ]
+}

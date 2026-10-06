@@ -1,0 +1,52 @@
+{
+  "tool": "built-in image_gen__imagegen",
+  "mode": "generate",
+  "use_case": "scientific-educational",
+  "category": "Icone bio",
+  "requested_background": "genuine transparent alpha",
+  "processing": "Ridotte a 1024 px sul lato lungo (Lanczos, alpha premoltiplicato): le immagini opache sono JPEG qualità 95 senza sottocampionamento del colore, quelle con trasparenza restano PNG RGBA.",
+  "assets": [
+    {
+      "id": "dna",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG icon for a scientific diagram editor.\nPrimary request: create a refined educational DNA double helix icon, horizontal, two complete gentle helical turns, evenly spaced paired base rungs.\nStyle/medium: clean polished scientific illustration with crisp contour edges and very subtle dimensional shading; simple enough to read at small icon size.\nComposition/framing: wide 90:34 aspect ratio; helix runs left to right; complete object fully visible, centered with 5% transparent margin.\nColor palette: two dark muted navy backbone strands around #3B4A6B and slate blue; paired rungs use restrained red #E5484D, blue #3B82C4, green #2F9E44 and gold #F5A524.\nConstraints: genuine transparent alpha background, absolutely no opaque canvas, no checkerboard painted into the image; standalone isolated icon. No labels, letters, title, watermark, shadow on a surface or decorative props. Scientific schematic, not a molecular ball-and-stick model.",
+      "file": "dna.png",
+      "width": 1024,
+      "height": 388
+    },
+    {
+      "id": "microscope",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG icon for a scientific diagram editor.\nPrimary request: a laboratory optical microscope in clean side profile with recognizable eyepiece, angled tube, objective lenses, stage, curved supporting arm and broad stable base.\nStyle/medium: refined clean educational illustration, crisp thin charcoal contours, restrained very subtle dimensional shading, readable at small icon size.\nComposition/framing: portrait 44:54 aspect ratio; complete standalone microscope centered with 5% transparent margin, no table or surrounding scene.\nColor palette: pale neutral gray #F5F5F5 body, medium gray #666666 contours, darker charcoal optical parts.\nConstraints: genuine transparent alpha background, no opaque canvas and no painted checkerboard; no labels, letters, title, watermark, decorative props, exaggerated photorealistic metal glare or drop shadow.",
+      "file": "microscope.png",
+      "width": 833,
+      "height": 1024
+    },
+    {
+      "id": "brainicon",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG anatomical icon for a scientific diagram editor.\nPrimary request: refined human brain lateral view, cerebrum with clear natural gyri and sulci, small cerebellum and short brainstem; educational and anatomically coherent.\nStyle/medium: polished medical illustration with simplified organic shapes, thin muted red contours and subtle soft shading, suitable for a small scientific paper icon.\nComposition/framing: landscape 60:48 aspect ratio; full brain isolated and centered with 5% transparent margin; anterior side to the left, posterior cerebellum to the right.\nColor palette: muted pale rose #F8CECC tissue and terracotta #B85450 contour and sulci; avoid lurid colors.\nConstraints: genuine transparent alpha background, no opaque canvas or painted checkerboard; no head silhouette, skull, labels, letters, title, arrows, watermark, scene props or drop shadow.",
+      "file": "brainicon.png",
+      "width": 1024,
+      "height": 819
+    },
+    {
+      "id": "lungsicon",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG anatomical icon for a scientific diagram editor.\nPrimary request: human lungs viewed from the front, paired lungs connected to a vertical trachea and visible main bronchi, clear gentle lobar boundaries and an anatomically coherent subtle cardiac notch.\nStyle/medium: refined clean medical educational illustration, thin muted red contours, simplified natural anatomy, subtle soft shading and readable silhouette for a small icon.\nComposition/framing: square aspect ratio, complete organ pair centered with 5% transparent margin, no torso.\nColor palette: pale rose #F8CECC lungs, terracotta #B85450 contour, softly lighter trachea and bronchi.\nConstraints: genuine transparent alpha background, no opaque canvas or painted checkerboard; no labels, text, title, arrows, watermark, blood, scene props or drop shadow.",
+      "file": "lungsicon.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "hearticon",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG anatomical icon for a scientific diagram editor.\nPrimary request: a refined human anatomical heart icon, anterior view, recognizable ventricles, atrial region, aortic arch and great vessels, coherent simple anatomy.\nStyle/medium: clean polished medical educational illustration, simplified organic forms with thin muted red contours and subtle soft shading, readable at small icon size.\nComposition/framing: almost square landscape 44:40 aspect ratio, complete isolated heart centered with 5% transparent margin.\nColor palette: pale rose #F8CECC and muted terracotta #B85450 tissue with restrained blue gray for appropriate great vessels, consistent with a pastel scientific icon collection.\nConstraints: genuine transparent alpha background, no opaque canvas or painted checkerboard; no labels, letters, title, arrows, watermark, blood, torso, extra decorations or drop shadow.",
+      "file": "hearticon.png",
+      "width": 1024,
+      "height": 931
+    },
+    {
+      "id": "cell",
+      "prompt": "Use case: scientific-educational\nAsset type: individual transparent PNG biological icon for a scientific diagram editor.\nPrimary request: a simplified animal cell cutaway with an irregular gently oval membrane, pale translucent green cytoplasm, a single round nucleus with small nucleolus, a few mitochondria, compact endoplasmic reticulum and Golgi shapes, clearly organized and anatomically coherent.\nStyle/medium: refined clean scientific educational illustration, crisp thin contours, subtle soft dimensional shading and restrained organelle detail, readable at small icon size.\nComposition/framing: landscape 70:56 aspect ratio, complete cell centered with 5% transparent margin, no surrounding environment.\nColor palette: pale green #D5E8D4 cytoplasm and membrane, green #82B366 contour, darker green nucleus, pale rose #F8CECC mitochondria with muted terracotta #B85450 internal folds.\nConstraints: genuine transparent alpha background, no opaque canvas or painted checkerboard; no plant cell wall or chloroplasts, no labels, letters, title, arrows, watermark, extra decorations or drop shadow.",
+      "file": "cell.png",
+      "width": 1024,
+      "height": 819
+    }
+  ]
+}

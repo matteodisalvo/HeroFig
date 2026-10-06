@@ -1,0 +1,87 @@
+/* Commenti appuntati sul foglio e presenza nella barra di stato. */
+
+.comments-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+}
+.comments-capture {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+.comment-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -100%);
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 4px;
+  background: var(--warn);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  pointer-events: auto;
+}
+.comment-pin.done {
+  background: #9aa1ab;
+}
+.comment-pin.on {
+  background: var(--accent);
+}
+.comment-card {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  width: 250px;
+  margin: 6px 0 0 6px;
+  padding: var(--s3);
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  color-scheme: inherit;
+  pointer-events: auto;
+  user-select: text;
+}
+.comment-card small {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.comment-card small b {
+  color: var(--text);
+}
+.comment-card p {
+  margin: 0;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.comment-count {
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--warn);
+  color: #fff;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+.presence-chip {
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 600;
+}
