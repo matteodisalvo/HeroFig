@@ -1,6 +1,7 @@
-# Builds the macOS disk images and the Windows installer, and attaches them to a GitHub
-# release. It runs when a version tag is pushed (git tag v<version> && git push origin v<version>),
-# or by hand from the Actions tab, which only builds them.
+# Builds the macOS disk images, the Windows installer and the Linux packages (AppImage, deb,
+# rpm, pacman, apk, tar.gz), and attaches them to a GitHub release. It runs when a version tag
+# is pushed (git tag v<version> && git push origin v<version>), or by hand from the Actions tab,
+# which only builds them.
 name: Release
 
 on:
@@ -23,6 +24,9 @@ jobs:
           - os: windows-latest
             build: npm run dist:win
             files: release/*.exe
+          - os: ubuntu-latest
+            build: npm run dist:linux
+            files: release/*
     runs-on: ${{ matrix.os }}
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: "false"
@@ -34,6 +38,10 @@ jobs:
           cache: npm
       - name: Install
         run: npm ci
+      # rpm and pacman packages are built with fpm, which needs rpmbuild and bsdtar.
+      - name: Install Linux packaging tools
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y rpm libarchive-tools fakeroot
       - name: Build
         run: ${{ matrix.build }}
       - uses: actions/upload-artifact@v7

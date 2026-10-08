@@ -1,6 +1,7 @@
 {
   "name": "herofig",
   "productName": "HeroFig",
+  "desktopName": "it.uniroma1.herofig.desktop",
   "version": "1.0.0",
   "description": "Figures for scientific papers, drawn at the size they will be printed.",
   "license": "MIT",
@@ -26,6 +27,7 @@
     "dist": "npm run build && node scripts/dist.mjs",
     "dist:mac": "npm run build && node scripts/dist.mjs --dmg",
     "dist:win": "npm run build && node scripts/dist.mjs --win",
+    "dist:linux": "npm run build && node scripts/dist.mjs --linux",
     "space": "npm run build && node scripts/space.mjs"
   },
   "build": {
@@ -80,6 +82,63 @@
       "allowToChangeInstallationDirectory": true,
       "artifactName": "HeroFig-${version}-Windows-Setup.${ext}",
       "shortcutName": "HeroFig"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "pacman",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "apk",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "Graphics",
+      "maintainer": "Matteo Di Salvo <disalvo.matteo@outlook.com>",
+      "synopsis": "Figures for scientific papers, drawn at the size they will be printed.",
+      "syncDesktopName": true
+    },
+    "deb": {
+      "packageCategory": "graphics",
+      "description": "Every paper needs a hero figure. HeroFig shows it on the page of your venue, at the size the reader will see it, checks the text that is too small or overflows, and exports it as PDF, SVG, PNG or TikZ. Figures stay on your computer: no account, no telemetry."
+    },
+    "rpm": {
+      "packageCategory": "Applications/Graphics"
     },
     "fileAssociations": [
       {
