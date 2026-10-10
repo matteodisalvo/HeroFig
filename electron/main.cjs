@@ -3,12 +3,13 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { fileURLToPath } = require('node:url');
 const { svgToPdf } = require('./pdf.cjs');
-const { execFile } = require('node:child_process');
+const { execFile, spawn } = require('node:child_process');
 const fsSync = require('node:fs');
 const os = require('node:os');
 const { setNativeLanguage, nativeText, localizeMenu } = require('./language.cjs');
 const { submitFeedback, isFeedbackSender } = require('./feedback.cjs');
 const { TEXT: IMAGE_TEXT, checkRequest, externalToken, generateImage, isHfKey } = require('./images.cjs');
+const updates = require('./update.cjs');
 
 // .tfig e .mlsketch sono i formati con i vecchi nomi dell'app (TensorFig, ML Pipeline Sketch): si aprono ancora, si salva come .hfig
 const DOC_FILTER = { name: 'HeroFig', extensions: ['hfig', 'tfig', 'mlsketch', 'json'] };
@@ -133,7 +134,11 @@ function createWindow() {
     asking = false;
     if (response === 0) win?.webContents.send('menu', 'saveAndClose');
     else if (response === 1) closeNow();
-    else quitting = false;
+    else {
+      quitting = false;
+      // l'aggiornamento chiesto non parte più alla prossima chiusura: si richiede dall'avviso
+      pendingInstaller = null;
+    }
   });
   win.webContents.on('did-finish-load', () => {
     if (pendingOpen) {
@@ -413,6 +418,64 @@ receive('shell:open', (_e, url) => {
 });
 
 handle('feedback:submit', (_e, payload) => submitFeedback(payload));
+
+// ---------- aggiornamenti (electron/update.cjs) ----------
+
+let update = null; // l'ultima versione trovata, più nuova di questa
+let updateRun = null; // lo scaricamento in corso
+let pendingInstaller = null; // Windows: l'installer da avviare quando l'app si è chiusa (dopo aver salvato)
+const UPDATE_EVERY = 3 * 60 * 60 * 1000; // ogni tre ore, oltre che all'avvio
+const updateFetch = (url, init) => net.fetch(url, { ...init, credentials: 'omit', cache: 'no-store' });
+const updateInfo = (u) => ({ version: u.version, notes: u.notes, page: u.page, canInstall: !!u.asset, platform: process.platform });
+
+async function checkUpdate() {
+  // solo l'app installata: in sviluppo la versione del package.json non è quella di nessuna release
+  if (!app.isPackaged && !process.env.HEROFIG_UPDATE_TEST) return;
+  try {
+    const found = await updates.check({ fetch: updateFetch, current: process.env.HEROFIG_UPDATE_TEST || app.getVersion(), platform: process.platform, arch: process.arch });
+    if (!found || found.version === update?.version) return;
+    update = found;
+    win?.webContents.send('update:state', { kind: 'available', ...updateInfo(found) });
+  } catch {
+    // senza rete o con GitHub che non risponde si riprova la prossima volta, in silenzio
+  }
+}
+
+// la pagina può arrivare dopo il controllo: chiede lei se c'è qualcosa
+handle('update:status', () => (update ? updateInfo(update) : null));
+
+handle('update:install', async () => {
+  if (!update?.asset) return { error: 'Nessun file da scaricare per questo computer.' };
+  if (updateRun) return { error: 'Lo scaricamento è già in corso.' };
+  updateRun = new AbortController();
+  try {
+    const file = await updates.download({
+      asset: update.asset,
+      dir: app.getPath('downloads'),
+      fetch: updateFetch,
+      signal: updateRun.signal,
+      onProgress: (done, total) => win?.webContents.send('update:state', { kind: 'progress', done, total }),
+    });
+    // Windows: l'app si chiude (chiedendo di salvare le modifiche, se ce ne sono) e solo allora l'installer parte, senza
+    // finestre (/S) e riaprendo HeroFig alla fine (--force-run); con «Annulla» sulla domanda di salvataggio non parte
+    if (process.platform === 'win32') {
+      pendingInstaller = file;
+      setTimeout(() => app.quit(), 300);
+      return { ok: true, file };
+    }
+    const failed = await shell.openPath(file);
+    if (failed) return { error: failed, file };
+    return { ok: true, file };
+  } catch (err) {
+    return { error: updateRun.signal.aborted ? 'stopped' : err instanceof Error ? err.message : String(err) };
+  } finally {
+    updateRun = null;
+  }
+});
+
+receive('update:stop', () => updateRun?.abort());
+// sul Mac, aperto il disco: si chiude l'app per poterla sostituire in Applicazioni
+receive('update:quit', () => app.quit());
 
 handle('paper:reveal', async (_e, { dir, base, name }) => {
   const root = paperRoot(dir, base);
@@ -1224,6 +1287,15 @@ app.on('before-quit', () => {
 
 // solo quando l'uscita è certa: con «Annulla» sulla domanda di salvataggio l'app resta aperta, e così il server del gruppo
 app.on('will-quit', () => {
+  updateRun?.abort();
+  if (pendingInstaller) {
+    try {
+      spawn(pendingInstaller, ['/S', '--force-run'], { detached: true, stdio: 'ignore' }).unref();
+    } catch {
+      // l'installer resta nella cartella Download, da aprire a mano
+    }
+    pendingInstaller = null;
+  }
   imageRun?.abort();
   stopGroup();
   try {
@@ -1243,6 +1315,9 @@ app.whenReady().then(() => {
   groupReady = resumeGroup();
   buildMenu();
   createWindow();
+  // dopo l'avvio, senza rallentarlo; poi ogni tanto, per chi tiene l'app aperta a lungo
+  setTimeout(checkUpdate, 8000);
+  setInterval(checkUpdate, UPDATE_EVERY).unref?.();
   // la finestra nascosta che stampa i PDF non conta
   app.on('activate', () => {
     if (!win) createWindow();

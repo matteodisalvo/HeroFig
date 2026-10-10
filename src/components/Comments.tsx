@@ -59,6 +59,22 @@ export function CommentsLayer() {
     return () => window.removeEventListener('keydown', key);
   }, [mode, openId]);
 
+  // un clic fuori dal commento aperto lo chiude, come quando si deseleziona un blocco
+  useEffect(() => {
+    if (!openId) return;
+    const down = (e: PointerEvent) => {
+      if (!(e.target as Element).closest?.('.comment-card, .comment-pin')) setOpenId(null);
+    };
+    window.addEventListener('pointerdown', down, true);
+    return () => window.removeEventListener('pointerdown', down, true);
+  }, [openId]);
+
+  // «Annulla» (o Esc) sul commento nuovo esce anche dalla modalità commento: senza, ogni clic sul foglio ne apriva un altro
+  const cancel = () => {
+    setDraft(null);
+    setUi({ commentMode: false });
+  };
+
   const at = (x: number, y: number) => ({ left: view.x + x * view.zoom, top: view.y + y * view.zoom });
   const stop = (e: React.SyntheticEvent) => e.stopPropagation();
 
@@ -90,6 +106,12 @@ export function CommentsLayer() {
   return (
     <div className="comments-layer">
       {mode && <div className="comments-capture" onPointerDown={place} />}
+      {mode && !draft && (
+        <div className="comments-hint" role="status" onPointerDown={stop}>
+          <span>{t('Clicca il punto del foglio da commentare')}</span>
+          <button type="button" className="link-btn" onClick={cancel}>{t('Annulla')}</button>
+        </div>
+      )}
       {list.map((c, i) => ( <button
           key={c.id}
           className={`comment-pin${c.done ? ' done' : ''}${c.id === openId ? ' on' : ''}`}
@@ -98,6 +120,7 @@ export function CommentsLayer() {
           onDoubleClick={stop}
           onClick={() => {
             setDraft(null);
+            setUi({ commentMode: false });
             setOpenId(c.id === openId ? null : c.id);
           }}
           aria-label={t('Commento {count} di {name}', { count: i + 1, name: c.author })}
@@ -134,7 +157,7 @@ export function CommentsLayer() {
           onDoubleClick={stop}
           onKeyDown={(e) => {
             e.stopPropagation();
-            if (e.key === 'Escape') setDraft(null);
+            if (e.key === 'Escape') cancel();
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) add();
           }}
           onWheel={stop}
@@ -147,7 +170,7 @@ export function CommentsLayer() {
           <textarea ref={area} rows={3} value={text} onChange={(e) => setText(e.target.value)} placeholder={t("Scrivi il commento…")} aria-label={t("Commento")} />
           <div className="comment-actions">
             <button type="submit" className="btn" disabled={!text.trim()}>{t("Commenta")}</button>
-            <button type="button" className="link-btn" onClick={() => setDraft(null)}>{t("Annulla")}</button>
+            <button type="button" className="link-btn" onClick={cancel}>{t("Annulla")}</button>
           </div>
         </form>
       )}

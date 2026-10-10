@@ -60,6 +60,15 @@ contextBridge.exposeInMainWorld('api', {
     ipcRenderer.on('image:step', handler);
     return () => ipcRenderer.removeListener('image:step', handler);
   },
+  updateStatus: () => ipcRenderer.invoke('update:status'),
+  updateInstall: () => ipcRenderer.invoke('update:install'),
+  updateStop: () => ipcRenderer.send('update:stop'),
+  updateQuit: () => ipcRenderer.send('update:quit'),
+  onUpdate: (cb) => {
+    const handler = (_event, state) => cb(state);
+    ipcRenderer.on('update:state', handler);
+    return () => ipcRenderer.removeListener('update:state', handler);
+  },
   paperChoose: (args) => ipcRenderer.invoke('paper:choose', args),
   paperScan: (args) => ipcRenderer.invoke('paper:scan', args),
   paperWrite: (args) => ipcRenderer.invoke('paper:write', args),

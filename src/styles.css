@@ -1193,6 +1193,25 @@ input[type='checkbox'] {
   stroke: #2f6feb;
   cursor: move;
 }
+/* «Raddrizza» nella riga Rotazione dell'Inspector: 0° invece di un'altra freccia che gira */
+.rotation-zero {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+/* la maniglia sopra il blocco selezionato: lo gira attorno al centro */
+.rotate-handle {
+  fill: #fff;
+  stroke: #2f6feb;
+  cursor: grab;
+}
+.rotate-handle:active {
+  cursor: grabbing;
+}
+.rotate-stem {
+  stroke: #2f6feb;
+  pointer-events: none;
+}
 .label-editor {
   position: absolute;
   padding: 4px 6px;

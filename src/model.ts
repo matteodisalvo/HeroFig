@@ -1,6 +1,7 @@
 import { registeredPresets } from './registry';
 export type BuiltinShape =
   | 'rect'
+  | 'line'
   | 'pill'
   | 'ellipse'
   | 'diamond'
@@ -120,6 +121,7 @@ export interface NodeModel {
   srcRatio: number; // larghezza / altezza dell'immagine originale
   ai: string; // descrizione usata per generare l'immagine con l'IA; vuota se è un file dell'utente
   role: Role; // cosa rappresenta nel modello: con un tema ne decide i colori (vedi themes.ts)
+  rotation?: number; // gradi in senso orario attorno al centro, fra -180 e 180; assente = non ruotato
 }
 
 export interface EdgeEnd {
@@ -185,6 +187,7 @@ export const FONT_CSS: Record<FontFamily, string> = {
 
 export const SHAPE_NAMES: Record<BuiltinShape, string> = {
   rect: 'Rettangolo',
+  line: 'Linea',
   pill: 'Pillola',
   ellipse: 'Ellisse',
   diamond: 'Rombo',
@@ -417,6 +420,13 @@ function normalizeEnd(raw: unknown): EdgeEnd {
   return { node: idOf(r.node), side: oneOf<Side | 'auto'>(r.side, [...SIDES, 'auto'], 'auto') };
 }
 
+/** Una rotazione in gradi riportata fra -180 e 180 (un decimo di grado al più); 0 se non è un numero. */
+export function normalRotation(v: unknown): number {
+  if (typeof v !== 'number' || !Number.isFinite(v)) return 0;
+  const r = Math.round((((v % 360) + 540) % 360 - 180) * 10) / 10;
+  return r === -180 ? 180 : r === 0 ? 0 : r;
+}
+
 /**
  * Valida un documento letto da file/clipboard e riempie i campi mancanti, così anche i file delle versioni
  * precedenti (.tfig, .mlsketch) o rovinati si aprono senza bloccare il disegno.
@@ -429,7 +439,8 @@ export function normalizeDoc(raw: unknown): Doc {
   const nodeDefaults = makeNode({ id: '' });
   const usedNodes = new Set<string>();
   const nodes = r.nodes.filter(isRec).map((n): NodeModel => {
-    const node = typed(n, nodeDefaults);
+    const { rotation: _rotation, ...node } = typed(n, nodeDefaults);
+    const rotation = normalRotation(n.rotation);
     return {
       ...node,
       id: freshId(node.id, usedNodes, 'n'),
@@ -439,6 +450,7 @@ export function normalizeDoc(raw: unknown): Doc {
       align: oneOf(node.align, ['center', 'left', 'right'], 'center'),
       direction: oneOf(node.direction, SIDES, 'right'),
       role: oneOf(node.role, ROLES, ''),
+      ...(rotation ? { rotation } : {}),
     };
   });
   const edgeDefaults = makeEdge({ node: '', side: 'auto' }, { node: '', side: 'auto' }, { id: '' });
@@ -533,6 +545,8 @@ export const PRESETS: Preset[] = [
   { id: 'para', name: 'Parallelogr.', category: 'Forme base', node: { shape: 'parallelogram', w: 110, h: 50, ...TEAL } },
   { id: 'triangle', name: 'Triangolo', category: 'Forme base', node: { shape: 'triangle', w: 60, h: 70, ...ORANGE } },
   { id: 'blockarrow', name: 'Freccia', category: 'Forme base', node: { shape: 'blockarrow', w: 90, h: 44, ...GRAY } },
+  // una linea semplice: il riquadro serve solo a prenderla; la si gira con la maniglia di rotazione
+  { id: 'line', name: 'Linea', category: 'Forme base', node: { shape: 'line', w: 140, h: 20, fill: 'none', stroke: '#333333', strokeWidth: 2, labelPos: 'above' } },
   // Dati
   { id: 'image', name: 'Immagine', category: 'Dati', node: { shape: 'image', label: 'Input', w: 80, h: 70, radius: 4, ...ICON, ...BLUE } },
   { id: 'patches', name: 'Patch', category: 'Dati', node: { shape: 'patches', label: 'Patch', w: 76, h: 76, spec: '3x3', ...ICON, ...BLUE } },

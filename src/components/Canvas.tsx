@@ -2,21 +2,24 @@ import { t } from '../i18n';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { run } from '../App';
 import { pickImageFile, readImage } from '../images';
-import { addImage, addPreset, addTemplate, replaceImage, selectAll, updateEdges, updateNodes, zoomBy } from '../actions';
+import { addImage, addPreset, addTemplate, replaceImage, rotateNodes, selectAll, updateEdges, updateNodes, zoomBy } from '../actions';
 import {
   edgeGeometry,
   edgeLabelBlock,
   edgePathD,
   labelLayout,
-  portPoint,
+  nodeBox,
+  nodePort,
   rectContains,
   rectsIntersect,
+  rotatePoint,
+  rotationOf,
   unionRect,
   type Anchor,
   type Pt,
   type Rect,
 } from '../geometry';
-import { FONT_CSS, GRID, isContainer, makeEdge, type NodeModel, type Side } from '../model';
+import { FONT_CSS, GRID, isContainer, makeEdge, normalRotation, type NodeModel, type Side } from '../model';
 import { DiagramContent } from '../render/DiagramContent';
 import { getState, pushHistory, setDoc, setEditing, setSel, setView, useStore, type Editing } from '../store';
 import { getUi, noteRecent, setUi, toast, useUi } from '../ui';
@@ -33,6 +36,7 @@ const ACCENT = '#2F6FEB';
 
 interface Overlay {
   marquee?: Rect;
+  angle?: { at: Pt; deg: number }; // mentre si ruota un blocco: i gradi, accanto alla maniglia
   guides?: { x: number[]; y: number[] };
   connect?: { from: Pt; to: Pt };
 }
@@ -147,22 +151,58 @@ export function Canvas() {
     const startDoc = getState().doc;
     const n = startDoc.nodes.find((x) => x.id === id);
     if (!n) return;
+    const rotated = rotationOf(n) !== 0;
     setBusy(true);
     trackPointer(
       (ev) => {
-        let q = toDoc(ev.clientX, ev.clientY);
-        if (startDoc.settings.snap && !ev.altKey) q = { x: snapGrid(q.x), y: snapGrid(q.y) };
+        // ruotato: il mouse si riporta nel riquadro del blocco non ruotato, che si ridimensiona come sempre
+        let q = rotatePoint(toDoc(ev.clientX, ev.clientY), n, -1);
+        if (startDoc.settings.snap && !ev.altKey && !rotated) q = { x: snapGrid(q.x), y: snapGrid(q.y) };
         let x1 = n.x, y1 = n.y, x2 = n.x + n.w, y2 = n.y + n.h;
         if (handle.includes('w')) x1 = Math.min(q.x, x2 - MIN_SIZE);
         if (handle.includes('e')) x2 = Math.max(q.x, x1 + MIN_SIZE);
         if (handle.includes('n')) y1 = Math.min(q.y, y2 - MIN_SIZE);
         if (handle.includes('s')) y2 = Math.max(q.y, y1 + MIN_SIZE);
-        const next = { ...n, x: x1, y: y1, w: x2 - x1, h: y2 - y1 };
+        // il centro nuovo, portato sul foglio con la rotazione: così l'angolo opposto alla maniglia resta fermo
+        const c = rotatePoint({ x: (x1 + x2) / 2, y: (y1 + y2) / 2 }, n);
+        const next = { ...n, x: c.x - (x2 - x1) / 2, y: c.y - (y2 - y1) / 2, w: x2 - x1, h: y2 - y1 };
         setDoc({ ...startDoc, nodes: startDoc.nodes.map((m) => (m.id === id ? next : m)) }, { history: false });
       },
       () => {
         setBusy(false);
         pushHistory(startDoc);
+      },
+    );
+  };
+
+  /**
+   * La maniglia sopra il blocco: lo gira attorno al suo centro. Si ferma da sola sugli angoli retti; con Maiuscole va a
+   * scatti di 15°.
+   */
+  const startRotate = (id: string) => {
+    const startDoc = getState().doc;
+    const n = startDoc.nodes.find((x) => x.id === id);
+    if (!n) return;
+    const c = { x: n.x + n.w / 2, y: n.y + n.h / 2 };
+    setBusy(true);
+    let moved = false;
+    trackPointer(
+      (ev) => {
+        const q = toDoc(ev.clientX, ev.clientY);
+        // la maniglia sta sopra il centro: in alto vale 0°
+        let deg = (Math.atan2(q.y - c.y, q.x - c.x) * 180) / Math.PI + 90;
+        if (ev.shiftKey) deg = Math.round(deg / 15) * 15;
+        else if (Math.abs(deg - Math.round(deg / 90) * 90) < 4) deg = Math.round(deg / 90) * 90;
+        else deg = Math.round(deg);
+        const rotation = normalRotation(deg);
+        moved = true;
+        setDoc({ ...startDoc, nodes: startDoc.nodes.map((m) => (m.id === id ? { ...m, rotation: rotation || undefined } : m)) }, { history: false });
+        setOv({ angle: { at: q, deg: rotation } });
+      },
+      () => {
+        setOv({});
+        setBusy(false);
+        if (moved) pushHistory(startDoc);
       },
     );
   };
@@ -197,7 +237,7 @@ export function Canvas() {
   const startConnect = (e: React.PointerEvent, nodeId: string, side: Side) => {
     const node = nodeMap.get(nodeId);
     if (!node) return;
-    const from = portPoint(node, side);
+    const from = nodePort(node, side);
     setOv({ connect: { from, to: toDoc(e.clientX, e.clientY) } });
     trackPointer(
       (ev) => setOv({ connect: { from, to: toDoc(ev.clientX, ev.clientY) } }),
@@ -236,8 +276,8 @@ export function Canvas() {
       if (!g || !isContainer(g)) continue;
       for (const n of startDoc.nodes) if (n.id !== gid && rectContains(g, n)) ids.add(n.id);
     }
-    const bb = unionRect(startDoc.nodes.filter((n) => ids.has(n.id)));
-    const others = startDoc.nodes.filter((n) => !ids.has(n.id));
+    const bb = unionRect(startDoc.nodes.filter((n) => ids.has(n.id)).map(nodeBox));
+    const others = startDoc.nodes.filter((n) => !ids.has(n.id)).map(nodeBox);
     const fixedX = others.flatMap((o) => [o.x, o.x + o.w / 2, o.x + o.w]);
     const fixedY = others.flatMap((o) => [o.y, o.y + o.h / 2, o.y + o.h]);
     const primary = byId.get(id)!;
@@ -299,7 +339,7 @@ export function Canvas() {
         }
         const d = getState().doc;
         const map = new Map(d.nodes.map((n) => [n.id, n]));
-        const nodes = d.nodes.filter((n) => (isContainer(n) ? rectContains(box, n) : rectsIntersect(box, n))).map((n) => n.id);
+        const nodes = d.nodes.filter((n) => (isContainer(n) ? rectContains(box, nodeBox(n)) : rectsIntersect(box, nodeBox(n)))).map((n) => n.id);
         const edges = d.edges
           .filter((ed) => {
             const g = edgeGeometry(ed, map);
@@ -324,6 +364,8 @@ export function Canvas() {
     if (edgeHandle) return startEdgeOffset(e, edgeHandle.getAttribute('data-edge-handle')!);
     const handle = t.closest('[data-handle]');
     if (handle) return startResize(handle.getAttribute('data-node')!, handle.getAttribute('data-handle')!);
+    const rotate = t.closest('[data-rotate]');
+    if (rotate) return startRotate(rotate.getAttribute('data-rotate')!);
     const port = t.closest('[data-port]');
     if (port) return startConnect(e, port.getAttribute('data-port-node')!, port.getAttribute('data-port') as Side);
     const nodeEl = t.closest('[data-node-id]');
@@ -409,7 +451,9 @@ export function Canvas() {
   const portNodes = busy ? [] : [...new Set([hover, single?.id])].map((id) => (id ? nodeMap.get(id) : undefined)).filter((n): n is NodeModel => !!n);
   const hoverNode = !busy && hover && !sel.nodes.includes(hover) ? nodeMap.get(hover) : undefined;
   const selNodes = sel.nodes.map((id) => nodeMap.get(id)).filter((n): n is NodeModel => !!n);
-  const selBox = selNodes.length > 1 ? unionRect(selNodes) : null;
+  const selBox = selNodes.length > 1 ? unionRect(selNodes.map(nodeBox)) : null;
+  // il contorno di un blocco ruotato gira con lui
+  const turn = (n: NodeModel) => (rotationOf(n) ? `rotate(${rotationOf(n)} ${n.x + n.w / 2} ${n.y + n.h / 2})` : undefined);
   const barBox =
     selBox && !busy && !editing && !menu
       ? { x: view.x + selBox.x * z - 6, y: view.y + selBox.y * z - 6, w: selBox.w * z + 12, h: selBox.h * z + 12 }
@@ -461,13 +505,14 @@ export function Canvas() {
                 y={hoverNode.y - 3}
                 width={hoverNode.w + 6}
                 height={hoverNode.h + 6}
+                transform={turn(hoverNode)}
                 rx={3 / z}
                 strokeWidth={1 / z}
                 opacity={0.45}
               />
             )}
             {selNodes.map((n) => (
-              <rect key={n.id} x={n.x - 3} y={n.y - 3} width={n.w + 6} height={n.h + 6} rx={2 / z} strokeWidth={1.25 / z} />
+              <rect key={n.id} x={n.x - 3} y={n.y - 3} width={n.w + 6} height={n.h + 6} rx={2 / z} strokeWidth={1.25 / z} transform={turn(n)} />
             ))}
             {selBox && !busy && (
               <rect
@@ -485,6 +530,11 @@ export function Canvas() {
             {ov.marquee && (
               <rect x={ov.marquee.x} y={ov.marquee.y} width={ov.marquee.w} height={ov.marquee.h} fill={ACCENT} fillOpacity={0.08} strokeWidth={1 / z} />
             )}
+            {ov.angle && (
+              <text x={ov.angle.at.x + 14 / z} y={ov.angle.at.y - 10 / z} fontSize={11 / z} fill={ACCENT} stroke="none" fontFamily="system-ui, sans-serif" fontWeight={600}>
+                {ov.angle.deg}°
+              </text>
+            )}
             {ov.connect && (
               <line x1={ov.connect.from.x} y1={ov.connect.from.y} x2={ov.connect.to.x} y2={ov.connect.to.y} strokeWidth={1.5 / z} strokeDasharray={`${5 / z} ${4 / z}`} />
             )}
@@ -492,7 +542,7 @@ export function Canvas() {
 
           {portNodes.map((n) =>
             SIDES.map((side) => {
-              const p = portPoint(n, side);
+              const p = nodePort(n, side);
               return (
                 <circle
                   key={n.id + side}
@@ -507,26 +557,47 @@ export function Canvas() {
               );
             }),
           )}
-          {single &&
-            !busy &&
-            (['nw', 'ne', 'se', 'sw'] as const).map((h) => {
-              const s = 8 / z;
-              const hx = h.includes('w') ? single.x - 3 : single.x + single.w + 3;
-              const hy = h.includes('n') ? single.y - 3 : single.y + single.h + 3;
-              return (
-                <rect
-                  key={h}
-                  className={`handle handle-${h}`}
-                  data-handle={h}
-                  data-node={single.id}
-                  x={hx - s / 2}
-                  y={hy - s / 2}
-                  width={s}
-                  height={s}
-                  strokeWidth={1.2 / z}
-                />
-              );
-            })}
+          {single && !busy && (
+            // le maniglie stanno sul blocco ruotato: si ridimensiona lungo i suoi lati, e quella sopra lo gira
+            <g transform={turn(single)}>
+              <line
+                className="rotate-stem"
+                x1={single.x + single.w / 2}
+                x2={single.x + single.w / 2}
+                y1={single.y - 3}
+                y2={single.y - 3 - 18 / z}
+                strokeWidth={1 / z}
+              />
+              <circle
+                className="rotate-handle"
+                data-rotate={single.id}
+                cx={single.x + single.w / 2}
+                cy={single.y - 3 - 22 / z}
+                r={4.5 / z}
+                strokeWidth={1.2 / z}
+              >
+                <title>{t('Trascina per ruotare · Maiuscole: a scatti di 15°')}</title>
+              </circle>
+              {(['nw', 'ne', 'se', 'sw'] as const).map((h) => {
+                const s = 8 / z;
+                const hx = h.includes('w') ? single.x - 3 : single.x + single.w + 3;
+                const hy = h.includes('n') ? single.y - 3 : single.y + single.h + 3;
+                return (
+                  <rect
+                    key={h}
+                    className={`handle handle-${h}`}
+                    data-handle={h}
+                    data-node={single.id}
+                    x={hx - s / 2}
+                    y={hy - s / 2}
+                    width={s}
+                    height={s}
+                    strokeWidth={1.2 / z}
+                  />
+                );
+              })}
+            </g>
+          )}
           {edgeHandle && singleEdge && (
             <circle
               className="edge-handle"
@@ -572,7 +643,8 @@ function LabelEditor({ editing }: { editing: Editing }) {
   let width = 140;
   if (node) {
     const l = labelLayout(node);
-    pos = l;
+    // il campo resta dritto, nel punto dove la scritta sta sul blocco ruotato
+    pos = rotatePoint(l, node);
     anchor = l.anchor;
     fontSize = node.fontSize;
     width = Math.max(140, node.w * view.zoom);
@@ -693,6 +765,7 @@ function ContextMenu({ menu, onClose }: { menu: MenuState; onClose: () => void }
       ...(many ? [] : [{ label: "Modifica l'etichetta", keys: '↩', action: editLabel }, 'sep' as const]),
       { label: 'Duplica', keys: '⌘D', action: () => run('duplicate') },
       { label: 'Raggruppa in un contenitore', keys: '⌘G', action: () => run('groupSelection') },
+      { label: 'Ruota di 90° a destra', action: () => rotateNodes(getState().sel.nodes, 90) },
       'sep',
       { label: 'Copia stile', keys: '⌥⌘C', action: () => run('copyStyle') },
       { label: 'Incolla stile', keys: '⌥⌘V', action: () => run('pasteStyle') },

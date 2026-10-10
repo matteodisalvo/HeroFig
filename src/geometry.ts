@@ -233,6 +233,9 @@ export function shapeParts(n: NodeModel): Part[] {
   switch (n.shape) {
     case 'text':
       return [];
+    case 'line':
+      // a metà altezza da un capo all'altro: il riquadro resta per prenderla, la rotazione la inclina
+      return [{ kind: 'path', fill: 'none', cmds: [['M', x, y + h / 2], ['L', x + w, y + h / 2]] }];
     case 'rect':
     case 'group':
       return [{ kind: 'rect', x, y, w, h, r: Math.min(n.radius, w / 2, h / 2), fill }];
@@ -665,6 +668,11 @@ export function portPoint(n: NodeModel, side: Side): Pt {
     bottom: { x: x + w / 2, y: y + h },
     left: { x, y: y + h / 2 },
   };
+  if (n.shape === 'line') {
+    // sopra e sotto si attacca alla linea stessa
+    p.top.y = y + h / 2;
+    p.bottom.y = y + h / 2;
+  }
   if (n.shape === 'parallelogram') {
     const i = Math.min(w * 0.2, h * 0.5) / 2;
     p.left.x += i;
@@ -693,6 +701,51 @@ export function portPoint(n: NodeModel, side: Side): Pt {
   }
   return p[side];
 }
+
+// ---------- rotazione ----------
+
+const SIDE_ORDER: Side[] = ['top', 'right', 'bottom', 'left'];
+
+/** Il lato che si trova dove era `side` dopo `quarters` quarti di giro in senso orario. */
+const turnSide = (side: Side, quarters: number): Side => SIDE_ORDER[(((SIDE_ORDER.indexOf(side) + quarters) % 4) + 4) % 4];
+
+/** I gradi di rotazione del blocco (in senso orario, attorno al centro); 0 se non è ruotato. */
+export const rotationOf = (n: NodeModel): number => (n.rotation && Number.isFinite(n.rotation) ? n.rotation : 0);
+
+/** Un punto del blocco non ruotato, portato dove sta sul foglio con la rotazione (`dir` = -1: il contrario). */
+export function rotatePoint(p: Pt, n: NodeModel, dir = 1): Pt {
+  const r = rotationOf(n);
+  if (!r) return p;
+  const a = (dir * r * Math.PI) / 180;
+  const cx = n.x + n.w / 2;
+  const cy = n.y + n.h / 2;
+  const dx = p.x - cx;
+  const dy = p.y - cy;
+  return { x: cx + dx * Math.cos(a) - dy * Math.sin(a), y: cy + dx * Math.sin(a) + dy * Math.cos(a) };
+}
+
+/** Il rettangolo dritto che contiene `r` (un riquadro del blocco) una volta ruotato con lui. */
+export function rotatedRect(r: Rect, n: NodeModel): Rect {
+  if (!rotationOf(n)) return r;
+  const pts = [
+    { x: r.x, y: r.y },
+    { x: r.x + r.w, y: r.y },
+    { x: r.x + r.w, y: r.y + r.h },
+    { x: r.x, y: r.y + r.h },
+  ].map((p) => rotatePoint(p, n));
+  const xs = pts.map((p) => p.x);
+  const ys = pts.map((p) => p.y);
+  return { x: Math.min(...xs), y: Math.min(...ys), w: Math.max(...xs) - Math.min(...xs), h: Math.max(...ys) - Math.min(...ys) };
+}
+
+/** L'ingombro del blocco sul foglio: il suo riquadro, o quello che lo contiene se è ruotato. */
+export const nodeBox = (n: NodeModel): Rect => rotatedRect(n, n);
+
+/** Il punto di un lato (del blocco non ruotato) dove sta sul foglio. */
+export const nodePort = (n: NodeModel, side: Side): Pt => rotatePoint(portPoint(n, side), n);
+
+/** Quanti quarti di giro fa il blocco, arrotondati: dice verso dove guarda ogni lato. */
+const quarters = (n: NodeModel) => Math.round(rotationOf(n) / 90);
 
 function autoSide(from: NodeModel, to: NodeModel): Side {
   const dx = to.x + to.w / 2 - (from.x + from.w / 2);
@@ -762,10 +815,12 @@ export function edgeGeometry(e: EdgeModel, nodes: Map<string, NodeModel>): EdgeG
   const a = nodes.get(e.from.node);
   const b = nodes.get(e.to.node);
   if (!a || !b) return null;
-  const s1 = e.from.side === 'auto' ? autoSide(a, b) : e.from.side;
-  const s2 = e.to.side === 'auto' ? autoSide(b, a) : e.to.side;
-  const p1 = portPoint(a, s1);
-  const p2 = portPoint(b, s2);
+  // con un blocco ruotato: il lato scelto (del blocco) guarda altrove sul foglio; la freccia parte dal punto ruotato, nella
+  // direzione verso cui ora guarda quel lato (arrotondata al quarto di giro, così i percorsi ortogonali restano a gomito)
+  const s1 = e.from.side === 'auto' ? autoSide(a, b) : turnSide(e.from.side, quarters(a));
+  const s2 = e.to.side === 'auto' ? autoSide(b, a) : turnSide(e.to.side, quarters(b));
+  const p1 = nodePort(a, turnSide(s1, -quarters(a)));
+  const p2 = nodePort(b, turnSide(s2, -quarters(b)));
   if (e.routing === 'curve') {
     const dist = Math.max(30, Math.hypot(p2.x - p1.x, p2.y - p1.y) * 0.4);
     const c1 = { x: p1.x + DIR[s1].x * dist, y: p1.y + DIR[s1].y * dist };
@@ -904,8 +959,8 @@ export function docBounds(doc: Doc): Rect {
   const family = doc.settings.fontFamily;
   for (const n of doc.nodes) {
     const s = n.stroke === 'none' ? 0 : n.strokeWidth / 2;
-    if (n.shape !== 'text') rects.push({ x: n.x - s, y: n.y - s, w: n.w + 2 * s, h: n.h + 2 * s });
-    for (const b of labelBlocks(n)) rects.push(textBlockRect(b, family));
+    if (n.shape !== 'text') rects.push(rotatedRect({ x: n.x - s, y: n.y - s, w: n.w + 2 * s, h: n.h + 2 * s }, n));
+    for (const b of labelBlocks(n)) rects.push(rotatedRect(textBlockRect(b, family), n));
   }
   const map = new Map(doc.nodes.map((n) => [n.id, n]));
   for (const e of doc.edges) {

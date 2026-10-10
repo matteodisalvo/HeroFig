@@ -5,6 +5,7 @@ import {
   edgeGeometry,
   edgeLabelBlock,
   labelBlocks,
+  rotationOf,
   shapeParts,
   type ClipRect,
   type Cmd,
@@ -224,6 +225,10 @@ function buildTikzPrepared(doc: Doc, opts: { imageBase?: string; images?: TikzIm
     `  \\node[${ANCHOR[t.anchor]}, inner sep=${t.halo ? '1.5pt, fill=white' : '0pt'}, text=${color(t.color)}, ${font(t.fontSize, t.bold, t.italic)}] at ${xy(t.x, t.y)} {${textBody(t.text)}};`;
 
   const drawNode = (n: NodeModel) => {
+    // ruotato: tutto il blocco (scritte comprese) in una scope girata attorno al centro; l'asse y di TikZ va in su, quindi
+    // il senso orario del foglio è un angolo negativo
+    const rotation = rotationOf(n);
+    if (rotation) out.push(`  \\begin{scope}[rotate around={${f(-rotation)}:${xy(n.x + n.w / 2, n.y + n.h / 2)}}, transform shape]`);
     let clip: ClipRect | undefined;
     for (const part of shapeParts(n)) {
       if (part.clip !== clip) {
@@ -238,6 +243,7 @@ function buildTikzPrepared(doc: Doc, opts: { imageBase?: string; images?: TikzIm
     }
     if (clip) out.push('  \\end{scope}');
     for (const t of labelBlocks(n)) out.push(textNode(t));
+    if (rotation) out.push('  \\end{scope}');
   };
 
   const map = new Map(doc.nodes.map((n) => [n.id, n]));

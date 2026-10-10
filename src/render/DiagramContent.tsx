@@ -6,6 +6,7 @@ import {
   edgeLabelBlock,
   edgePathD,
   labelBlocks,
+  rotationOf,
   shapeParts,
   textBlockRect,
   type Anchor,
@@ -147,8 +148,10 @@ function clipRuns(parts: Part[]): { clip?: ClipRect; parts: Part[] }[] {
 
 function NodeView({ n, interactive, ids }: { n: NodeModel; interactive: boolean; ids: string }) {
   const parts = shapeParts(n);
+  // ruotato: tutto il blocco gira attorno al suo centro, scritte comprese (come nelle slide)
+  const rotation = rotationOf(n);
   return (
-    <g data-node-id={interactive ? n.id : undefined}>
+    <g data-node-id={interactive ? n.id : undefined} transform={rotation ? `rotate(${rotation} ${n.x + n.w / 2} ${n.y + n.h / 2})` : undefined}>
       {clipRuns(parts).map((run, i) => {
         const items = run.parts.map((p, j) => <PartView key={j} part={p} n={n} />);
         if (!run.clip) return <g key={i}>{items}</g>;

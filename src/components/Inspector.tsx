@@ -1,7 +1,7 @@
 import { t as tr } from '../i18n';
 import { memo, useMemo, useState } from 'react';
 import { run } from '../App';
-import { addLatentBeside, align, distribute, reorder, replaceImage, updateEdges, updateNodes, updateSettings, type AlignMode } from '../actions';
+import { addLatentBeside, align, distribute, reorder, replaceImage, rotateNodes, updateEdges, updateNodes, updateSettings, type AlignMode } from '../actions';
 import { latentLook, pickImageFile, readImage } from '../images';
 import { docBounds } from '../geometry';
 import {
@@ -11,6 +11,7 @@ import {
   SWATCHES,
   isContainer,
   makeNode,
+  normalRotation,
   type BuiltinShape,
   type Doc,
   type EdgeLabelPos,
@@ -374,6 +375,7 @@ function NodePanel({ nodes }: { nodes: NodeModel[] }) {
             <Num label={tr("L")} tip={tr("Larghezza")} value={n.w} min={10} unit="px" onChange={(w) => set({ w }, 'w')} />
             <Num label={tr("A")} tip={tr("Altezza")} value={n.h} min={10} unit="px" onChange={(h) => set({ h }, 'h')} />
           </div>
+          <RotationRow nodes={nodes} />
         </Panel>
       )}
 
@@ -416,6 +418,7 @@ function NodePanel({ nodes }: { nodes: NodeModel[] }) {
             <Icon name="back" size={14} /> {tr("Dietro")}
           </button>
         </div>
+        {multi && <RotationRow nodes={nodes} />}
         {multi && (
           <button className="btn full" onClick={() => run('groupSelection')} data-keys="⌘G" data-tip={tr("Racchiudi in un gruppo tratteggiato con titolo")}>
             <Icon name="group" size={14} /> {tr("Raggruppa in un contenitore")}
@@ -423,6 +426,38 @@ function NodePanel({ nodes }: { nodes: NodeModel[] }) {
         )}
       </Panel>
     </>
+  );
+}
+
+/** I gradi di rotazione dei blocchi (in senso orario), i quarti di giro e il pulsante per raddrizzarli. */
+function RotationRow({ nodes }: { nodes: NodeModel[] }) {
+  const ids = nodes.map((x) => x.id);
+  const values = nodes.map((x) => x.rotation ?? 0);
+  const same = values.every((r) => r === values[0]) ? values[0] : undefined;
+  return (
+    <div className="row">
+      <span className="row-label" data-tip={tr('Trascina per ruotare · Maiuscole: a scatti di 15°')}>
+        {tr('Rotazione')}
+      </span>
+      <span className="row-control inline-controls">
+        <NumInput
+          label="Rotazione"
+          value={same}
+          step={15}
+          unit="°"
+          onChange={(r) => updateNodes(ids, { rotation: normalRotation(r) || undefined }, `rot:${ids.join()}`)}
+        />
+        <button className="toggle" data-tip={tr('Ruota di 90° a sinistra')} aria-label={tr('Ruota di 90° a sinistra')} onClick={() => rotateNodes(ids, -90)}>
+          <Icon name="rotateLeft" size={14} />
+        </button>
+        <button className="toggle" data-tip={tr('Ruota di 90° a destra')} aria-label={tr('Ruota di 90° a destra')} onClick={() => rotateNodes(ids, 90)}>
+          <Icon name="rotateRight" size={14} />
+        </button>
+        <button className="toggle" data-tip={tr('Raddrizza')} aria-label={tr('Raddrizza')} disabled={values.every((r) => !r)} onClick={() => updateNodes(ids, { rotation: undefined })}>
+          <span className="rotation-zero">0°</span>
+        </button>
+      </span>
+    </div>
   );
 }
 

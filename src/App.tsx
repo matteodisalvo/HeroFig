@@ -21,6 +21,7 @@ import { Canvas } from './components/Canvas';
 import { Inspector } from './components/Inspector';
 import { Palette } from './components/Palette';
 import { Shortcuts, StatusBar, Toast } from './components/Overlays';
+import { UpdateNotice } from './components/UpdateNotice';
 import { About, StarNudge, noteExport } from './components/About';
 import { Toolbar } from './components/Toolbar';
 import { Tooltip } from './components/Tooltip';
@@ -476,6 +477,7 @@ export function App() {
       <PacksPanel />
       <FeedbackPanel />
       <Toast />
+      <UpdateNotice />
       <Tooltip />
       {profileOpen && <ProfilePanel />}
       {onboarding.open && <Onboarding />}

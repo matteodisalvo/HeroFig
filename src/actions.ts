@@ -1,5 +1,5 @@
 import { docBounds, unionRect, type Pt } from './geometry';
-import { GRID, GROUP_STYLE, MED_IMG, allPresets, isContainer, makeNode, normalizeDoc, uid, type Doc, type EdgeModel, type NodeModel, type Settings } from './model';
+import { GRID, GROUP_STYLE, MED_IMG, allPresets, isContainer, makeNode, normalRotation, normalizeDoc, uid, type Doc, type EdgeModel, type NodeModel, type Settings } from './model';
 import { pageLayout, venueById } from './paper';
 import { getState, setDoc, setSel, setView } from './store';
 import { allTemplates } from './templates';
@@ -133,6 +133,13 @@ export function updateNodes(ids: string[], patch: Partial<NodeModel>, coalesce?:
   const { doc } = getState();
   const set = new Set(ids);
   setDoc({ ...doc, nodes: doc.nodes.map((n) => (set.has(n.id) ? { ...n, ...patch } : n)) }, { coalesce });
+}
+
+/** Gira i blocchi di `delta` gradi ciascuno, attorno al proprio centro. */
+export function rotateNodes(ids: string[], delta: number) {
+  const { doc } = getState();
+  const set = new Set(ids);
+  setDoc({ ...doc, nodes: doc.nodes.map((n) => (set.has(n.id) ? { ...n, rotation: normalRotation((n.rotation ?? 0) + delta) || undefined } : n)) });
 }
 
 export function updateEdges(ids: string[], patch: Partial<EdgeModel>, coalesce?: string) {

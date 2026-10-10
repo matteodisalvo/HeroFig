@@ -4,6 +4,25 @@ All notable changes to HeroFig are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- **Line shape** in Basic shapes: a plain line to move, stretch and rotate like a block; arrows
+  attach to the line itself.
+- **Rotating blocks and shapes**: drag the round handle above the selected block (it stops at
+  right angles; with Shift it turns in 15° steps), type the angle in the Inspector, or turn by
+  90° from the Inspector and the context menu. Labels turn with the block, arrows stay attached,
+  and the TikZ export keeps the rotation.
+- **Update notice** in the desktop app: at start-up and every three hours it checks GitHub for a
+  newer release. **Update** downloads the file for this computer and verifies its SHA-256; on
+  Windows HeroFig closes, updates itself and reopens, on macOS the disk image opens so the new
+  version can be dragged into Applications.
+
+### Fixed
+- Comments: an open comment now closes when clicking elsewhere on the sheet, and **Cancel** (or
+  Esc) on a new comment also leaves comment mode, which used to open a new comment at every click.
+  While picking the spot, a hint at the top offers **Cancel**.
+
 ## [1.0.0] - 2026-10-06
 
 First public release.

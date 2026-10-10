@@ -12,6 +12,28 @@
   pointer-events: auto;
   cursor: crosshair;
 }
+/* modalità commento: cosa fare, e come uscirne */
+.comments-hint {
+  position: absolute;
+  /* sotto la barra degli strumenti, che sta sopra il foglio (come la barra della vista Pagina) */
+  top: calc(var(--bar-space) + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 6px 8px 6px 14px;
+  border-radius: 999px;
+  background: var(--tip-bg);
+  color: #fff;
+  font-size: var(--fs-sm);
+  box-shadow: var(--shadow-md);
+  pointer-events: auto;
+  white-space: nowrap;
+}
+.comments-hint .link-btn {
+  color: #9ec0ff;
+}
 .comment-pin {
   position: absolute;
   width: 24px;

@@ -113,6 +113,11 @@ interface ElectronApi {
   setImageToken?(token: string): Promise<{ ok?: boolean; error?: string }>;
   clearImageToken?(): Promise<{ ok?: boolean; error?: string }>;
   onImageStep?(cb: (text: string) => void): () => void;
+  updateStatus?(): Promise<UpdateInfo | null>;
+  updateInstall?(): Promise<{ ok?: boolean; file?: string; error?: string }>;
+  updateStop?(): void;
+  updateQuit?(): void;
+  onUpdate?(cb: (state: UpdateState) => void): () => void;
   paperChoose?(args: { base: string | null }): Promise<{ dir: string; abs: string } | null>;
   paperScan?(args: { dir: string; base: string | null; name: string }): Promise<PaperScan>;
   paperWrite?(args: PaperWrite): Promise<{ ok: boolean; sub?: string; error?: string; pushed?: number; pushError?: string }>;
@@ -264,6 +269,23 @@ export const groupLogin = (on: boolean) => api?.groupLogin?.(on) ?? Promise.reso
 export const groupStop = () => api?.groupStop?.() ?? Promise.resolve();
 
 /** Le immagini illustrative le genera FLUX su Hugging Face: serve l'app desktop, che custodisce la chiave dell'utente. */
+/** Una versione più nuova pubblicata su GitHub (electron/update.cjs). */
+export interface UpdateInfo {
+  version: string;
+  notes: string;
+  page: string; // la pagina della release, con le novità
+  canInstall: boolean; // c'è il file per questo computer, con la sua impronta
+  platform: string;
+}
+export type UpdateState = ({ kind: 'available' } & UpdateInfo) | { kind: 'progress'; done: number; total: number };
+
+export const hasUpdates = !!api?.updateStatus;
+export const updateStatus = (): Promise<UpdateInfo | null> => api?.updateStatus?.() ?? Promise.resolve(null);
+export const updateInstall = () => api?.updateInstall?.() ?? Promise.resolve({ error: 'Disponibile solo nell’app installata.' });
+export const updateStop = () => api?.updateStop?.();
+export const updateQuit = () => api?.updateQuit?.();
+export const onUpdate = (cb: (state: UpdateState) => void) => api?.onUpdate?.(cb) ?? (() => {});
+
 export const hasImageGen = !!api?.imageGenerate;
 export const imageGenerate = (args: ImageArgs): Promise<ImageResult> =>
   api?.imageGenerate?.(args) ?? Promise.resolve({ error: "Disponibile solo nell'app da installare (Mac o Windows)." });

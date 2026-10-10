@@ -20,7 +20,7 @@
     "dev": "node scripts/dev.mjs",
     "dev:web": "vite",
     "typecheck": "tsc --noEmit",
-    "check": "node --import tsx scripts/check-library.ts && node --import tsx scripts/check-generated-assets.ts && node --import tsx scripts/check-i18n.ts && node --import tsx scripts/check-onboarding.ts && node --import tsx scripts/check-profile.ts && node --import tsx scripts/check-feedback.ts && node --import tsx scripts/check-welcome-cloud.ts && node scripts/check-feedback-desktop.cjs",
+    "check": "node --import tsx scripts/check-library.ts && node --import tsx scripts/check-generated-assets.ts && node --import tsx scripts/check-i18n.ts && node --import tsx scripts/check-onboarding.ts && node --import tsx scripts/check-profile.ts && node --import tsx scripts/check-feedback.ts && node --import tsx scripts/check-welcome-cloud.ts && node --import tsx scripts/check-rotation.ts && node --import tsx scripts/check-update.ts && node scripts/check-feedback-desktop.cjs",
     "build": "tsc --noEmit && vite build",
     "start": "npm run build && node scripts/dev.mjs --prod",
     "dist": "npm run build && node scripts/dist.mjs",
