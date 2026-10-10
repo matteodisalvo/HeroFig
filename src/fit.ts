@@ -7,7 +7,7 @@
 // sola o una stampa un po' più piccola, mai a spese del testo.
 // Nessun passo lascia la figura peggio di come l'ha trovata (vedi added): niente difetti nuovi, niente figura
 // molto alta che prima non lo era, niente righe che strappano i collegamenti o aggrovigliano le frecce.
-import { docBounds, edgeGeometry, edgeLabelBlock, labelBlocks, rectContains, textBlockRect, unionRect, type EdgeGeom, type Pt, type Rect } from './geometry';
+import { docBounds, edgeGeometry, edgeLabelBlock, labelBlocks, labelFrame, rectContains, textBlockRect, unionRect, type EdgeGeom, type Pt, type Rect } from './geometry';
 import { isContainer, type Doc, type NodeModel } from './model';
 import { reviewDoc } from './review';
 import { HALF_PAGE_CM, MIN_PT, VENUES, bestVenue, figureWidthCm, pageLayout, venueById, type Venue } from './paper';
@@ -23,7 +23,7 @@ const PX_PT = 0.75;
 /** Ingombro delle scritte interne di un blocco; null se il blocco non ha scritte al suo interno. */
 function innerText(n: NodeModel, doc: Doc): Rect | null {
   if (isContainer(n) || n.shape === 'text' || n.labelPos !== 'center' || (!n.label.trim() && !n.sublabel.trim())) return null;
-  const rects = labelBlocks(n).map((b) => textBlockRect(b, doc.settings.fontFamily));
+  const rects = labelBlocks(labelFrame(n)).map((b) => textBlockRect(b, doc.settings.fontFamily));
   return rects.length ? unionRect(rects) : null;
 }
 
@@ -61,7 +61,7 @@ interface Cluster {
 }
 
 const nodeBox = (n: NodeModel, doc: Doc): Rect =>
-  unionRect([{ x: n.x, y: n.y, w: n.w, h: n.h }, ...labelBlocks(n).map((b) => textBlockRect(b, doc.settings.fontFamily))]);
+  unionRect([{ x: n.x, y: n.y, w: n.w, h: n.h }, ...labelBlocks(labelFrame(n)).map((b) => textBlockRect(b, doc.settings.fontFamily))]);
 
 /**
  * Gruppi di blocchi che stanno uno sopra l'altro (stessa "colonna" della figura): un contenitore porta con sé
@@ -244,7 +244,7 @@ function tangles(doc: Doc): number {
   const blocks = doc.nodes.filter((n) => !isContainer(n) && n.w * n.h > 16);
   const captions = blocks
     .filter((n) => n.labelPos !== 'center')
-    .flatMap((n) => labelBlocks(n).map((b) => textBlockRect(b, doc.settings.fontFamily)));
+    .flatMap((n) => labelBlocks(labelFrame(n)).map((b) => textBlockRect(b, doc.settings.fontFamily)));
   const lines = doc.edges.flatMap((e) => {
     const g = edgeGeometry(e, byId);
     if (!g) return [];

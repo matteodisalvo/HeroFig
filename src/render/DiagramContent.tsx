@@ -6,6 +6,7 @@ import {
   edgeLabelBlock,
   edgePathD,
   labelBlocks,
+  labelFrame,
   rotationOf,
   shapeParts,
   textBlockRect,
@@ -148,32 +149,34 @@ function clipRuns(parts: Part[]): { clip?: ClipRect; parts: Part[] }[] {
 
 function NodeView({ n, interactive, ids }: { n: NodeModel; interactive: boolean; ids: string }) {
   const parts = shapeParts(n);
-  // ruotato: tutto il blocco gira attorno al suo centro, scritte comprese (come nelle slide)
+  // ruotato: la forma gira attorno al suo centro; le scritte restano dritte (labelFrame)
   const rotation = rotationOf(n);
   return (
-    <g data-node-id={interactive ? n.id : undefined} transform={rotation ? `rotate(${rotation} ${n.x + n.w / 2} ${n.y + n.h / 2})` : undefined}>
-      {clipRuns(parts).map((run, i) => {
-        const items = run.parts.map((p, j) => <PartView key={j} part={p} n={n} />);
-        if (!run.clip) return <g key={i}>{items}</g>;
-        const id = `${ids}clip-${n.id}-${i}`;
-        const c = run.clip;
-        return (
-          <g key={i}>
-            <clipPath id={id}>
-              <rect x={c.x} y={c.y} width={c.w} height={c.h} rx={c.r || undefined} />
-            </clipPath>
-            <g clipPath={`url(#${id})`}>{items}</g>
-          </g>
-        );
-      })}
-      {/* area di presa: i gruppi si afferrano solo dal bordo, per non coprire il contenuto */}
-      {interactive &&
-        (isContainer(n) ? (
-          parts.map((p, i) => <PartView key={'hit' + i} part={{ ...p, fill: 'none', stroke: 'transparent', sw: 12, solid: true }} n={n} />)
-        ) : (
-          <rect x={n.x} y={n.y} width={n.w} height={n.h} fill="transparent" />
-        ))}
-      {labelBlocks(n).map((b, i) => (
+    <g data-node-id={interactive ? n.id : undefined}>
+      <g transform={rotation ? `rotate(${rotation} ${n.x + n.w / 2} ${n.y + n.h / 2})` : undefined}>
+        {clipRuns(parts).map((run, i) => {
+          const items = run.parts.map((p, j) => <PartView key={j} part={p} n={n} />);
+          if (!run.clip) return <g key={i}>{items}</g>;
+          const id = `${ids}clip-${n.id}-${i}`;
+          const c = run.clip;
+          return (
+            <g key={i}>
+              <clipPath id={id}>
+                <rect x={c.x} y={c.y} width={c.w} height={c.h} rx={c.r || undefined} />
+              </clipPath>
+              <g clipPath={`url(#${id})`}>{items}</g>
+            </g>
+          );
+        })}
+        {/* area di presa: i gruppi si afferrano solo dal bordo, per non coprire il contenuto */}
+        {interactive &&
+          (isContainer(n) ? (
+            parts.map((p, i) => <PartView key={'hit' + i} part={{ ...p, fill: 'none', stroke: 'transparent', sw: 12, solid: true }} n={n} />)
+          ) : (
+            <rect x={n.x} y={n.y} width={n.w} height={n.h} fill="transparent" />
+          ))}
+      </g>
+      {labelBlocks(labelFrame(n)).map((b, i) => (
         <Label key={i} {...b} />
       ))}
     </g>

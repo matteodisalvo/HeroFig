@@ -7,13 +7,14 @@ import {
   edgeGeometry,
   edgeLabelBlock,
   edgePathD,
+  labelFrame,
   labelLayout,
   nodeBox,
-  nodePort,
   rectContains,
   rectsIntersect,
   rotatePoint,
   rotationOf,
+  sidePort,
   unionRect,
   type Anchor,
   type Pt,
@@ -237,7 +238,7 @@ export function Canvas() {
   const startConnect = (e: React.PointerEvent, nodeId: string, side: Side) => {
     const node = nodeMap.get(nodeId);
     if (!node) return;
-    const from = nodePort(node, side);
+    const from = sidePort(node, side);
     setOv({ connect: { from, to: toDoc(e.clientX, e.clientY) } });
     trackPointer(
       (ev) => setOv({ connect: { from, to: toDoc(ev.clientX, ev.clientY) } }),
@@ -542,7 +543,7 @@ export function Canvas() {
 
           {portNodes.map((n) =>
             SIDES.map((side) => {
-              const p = nodePort(n, side);
+              const p = sidePort(n, side);
               return (
                 <circle
                   key={n.id + side}
@@ -642,9 +643,9 @@ function LabelEditor({ editing }: { editing: Editing }) {
   let fontSize = 14;
   let width = 140;
   if (node) {
-    const l = labelLayout(node);
-    // il campo resta dritto, nel punto dove la scritta sta sul blocco ruotato
-    pos = rotatePoint(l, node);
+    // su un blocco ruotato la scritta è dritta, attorno al riquadro che lo contiene
+    const l = labelLayout(labelFrame(node));
+    pos = l;
     anchor = l.anchor;
     fontSize = node.fontSize;
     width = Math.max(140, node.w * view.zoom);
