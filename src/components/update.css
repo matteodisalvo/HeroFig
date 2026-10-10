@@ -1,10 +1,12 @@
-/* L'avviso di una versione nuova (UpdateNotice.tsx): una scheda in basso a destra, sopra la barra di stato. */
+/* L'avviso di una versione nuova (UpdateNotice.tsx): una scheda in basso al centro, sopra la barra di stato. */
 
 .update-card {
   position: fixed;
   z-index: 70;
-  right: 16px;
+  left: 0;
+  right: 0;
   bottom: 40px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: var(--s3);
@@ -71,6 +73,10 @@
   flex: none;
   display: flex;
   gap: var(--s2);
+}
+/* i messaggi brevi (Overlays.tsx) compaiono lì sotto: con l'avviso aperto salgono sopra di lui */
+body:has(.update-card) .toast {
+  bottom: 120px;
 }
 @media (prefers-reduced-motion: reduce) {
   .update-card {

@@ -1,5 +1,5 @@
 import { t, useLanguage } from '../i18n';
-// L'avviso di una versione nuova di HeroFig (electron/update.cjs): compare in basso a destra quando su GitHub c'è una
+// L'avviso di una versione nuova di HeroFig (electron/update.cjs): compare in basso al centro quando su GitHub c'è una
 // release più nuova. «Aggiorna» scarica il file per questo computer: su Windows HeroFig si chiude, si aggiorna e si
 // riapre; sul Mac si apre il disco da cui trascinare la nuova versione in Applicazioni. «Più tardi» lo nasconde fino al
 // prossimo avvio.
