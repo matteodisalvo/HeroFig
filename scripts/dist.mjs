@@ -2,6 +2,7 @@
 //   npm run dist        → HeroFig.app per questo Mac (veloce, per provarla)
 //   npm run dist:mac    → HeroFig-<versione>-macOS-arm64.dmg e -x64.dmg (Apple silicon e Intel)
 //   npm run dist:win    → HeroFig-<versione>-Windows-Setup.exe (si può costruire anche da Mac)
+//   npm run dist:linux  → i pacchetti Linux (AppImage, deb, rpm, pacman, apk, tar.gz) per x64 e arm64
 // electron-builder rifiuta cartelle di output con caratteri speciali della shell (come la "&" nel nome di
 // questa cartella), quindi si costruisce in una cartella temporanea e poi si copia il risultato in release/.
 import { execFileSync } from 'node:child_process';
@@ -18,18 +19,22 @@ const env = { ...process.env };
 delete env.ELECTRON_RUN_AS_NODE;
 const win = process.argv.includes('--win') || (process.platform === 'win32' && !process.argv.includes('--mac'));
 const dmg = process.argv.includes('--dmg');
+const linux = process.argv.includes('--linux');
 
 const build = (args) => execFileSync(process.execPath, [cli, ...args, `-c.directories.output=${out}`, '--publish', 'never'], { stdio: 'inherit', env });
-const copyOut = (ext) => {
-  const files = readdirSync(out).filter((f) => f.endsWith(ext));
-  if (!files.length) throw new Error(`electron-builder non ha prodotto file ${ext}`);
+const copyOut = (...exts) => {
+  const files = readdirSync(out).filter((f) => exts.some((ext) => f.endsWith(ext)));
+  if (!files.length) throw new Error(`electron-builder non ha prodotto file ${exts.join(', ')}`);
   for (const f of files) cpSync(path.join(out, f), path.resolve('release', f));
   return files.map((f) => path.resolve('release', f));
 };
 
 try {
   mkdirSync('release', { recursive: true });
-  if (win) {
+  if (linux) {
+    build(['--linux']);
+    console.log(`\nPacchetti Linux pronti:\n  ${copyOut('.AppImage', '.deb', '.rpm', '.pacman', '.apk', '.tar.gz').join('\n  ')}`);
+  } else if (win) {
     // il runtime di Electron per Windows si scarica la prima volta
     build(['--win']);
     console.log(`\nInstaller pronto: ${copyOut('.exe').join(', ')}`);

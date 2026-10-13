@@ -14,6 +14,7 @@
   <a href="https://github.com/matteodisalvo/herofig/actions/workflows/checks.yml"><img src="https://github.com/matteodisalvo/herofig/actions/workflows/checks.yml/badge.svg" alt="Controlli"></a>
   <img src="https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white" alt="macOS">
   <img src="https://img.shields.io/badge/Windows-0078D4?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRpdGxlPldpbmRvd3M8L3RpdGxlPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMCAwaDExLjM3N3YxMS4zNzJIMHptMTIuNjIzIDBIMjR2MTEuMzcySDEyLjYyM3pNMCAxMi42MjNoMTEuMzc3VjI0SDB6bTEyLjYyMyAwSDI0VjI0SDEyLjYyM3oiLz48L3N2Zz4K" alt="Windows">
+  <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" alt="Linux">
   <img src="https://img.shields.io/badge/LaTeX-TikZ-008080?logo=latex&logoColor=white" alt="Export TikZ">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="Licenza MIT"></a>
 </p>
@@ -39,6 +40,7 @@
 <p align="center">
   <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Scarica_per_macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Scarica per macOS"></a>
   <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Scarica_per_Windows-0078D4?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRpdGxlPldpbmRvd3M8L3RpdGxlPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMCAwaDExLjM3N3YxMS4zNzJIMHptMTIuNjIzIDBIMjR2MTEuMzcySDEyLjYyM3pNMCAxMi42MjNoMTEuMzc3VjI0SDB6bTEyLjYyMyAwSDI0VjI0SDEyLjYyM3oiLz48L3N2Zz4K" alt="Scarica per Windows"></a>
+  <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Scarica_per_Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Scarica per Linux"></a>
 </p>
 
 Gratis e open source, senza account, e le tue figure restano sul tuo computer. La prima
@@ -103,6 +105,32 @@ Scarica il file per il tuo sistema dall'[ultima versione](https://github.com/mat
 3. Segui l'installazione: puoi installare HeroFig solo per il tuo utente, senza permessi di
    amministratore.
 
+### <img src="docs/images/linux.svg" height="20" alt=""> Linux
+
+1. Scarica il pacchetto per la tua distribuzione dall'
+   [ultima versione](https://github.com/matteodisalvo/herofig/releases/latest):
+   `herofig_<versione>_amd64.deb` per Debian, Ubuntu e Mint; `herofig-<versione>.x86_64.rpm`
+   per Fedora, RHEL e openSUSE; `herofig-<versione>.pacman` per Arch e Manjaro;
+   `herofig-<versione>.apk` per Alpine; `herofig-<versione>.tar.gz` per qualsiasi altra
+   distribuzione. Sui computer ARM usa i file `arm64` o `aarch64`.
+2. Installalo dal terminale, nella cartella in cui l'hai scaricato:
+
+   ```bash
+   sudo apt install ./herofig_<versione>_amd64.deb        # Debian, Ubuntu, Mint
+   sudo dnf install ./herofig-<versione>.x86_64.rpm       # Fedora, RHEL
+   sudo zypper install ./herofig-<versione>.x86_64.rpm    # openSUSE
+   sudo pacman -U herofig-<versione>.pacman               # Arch, Manjaro
+   sudo apk add --allow-untrusted herofig-<versione>.apk  # Alpine
+   ```
+
+3. Oppure usa l'AppImage, che non richiede installazione: scarica `HeroFig-<versione>.AppImage`,
+   rendilo eseguibile e avvialo:
+
+   ```bash
+   chmod +x HeroFig-<versione>.AppImage
+   ./HeroFig-<versione>.AppImage
+   ```
+
 ### Dal codice sorgente
 
 Su qualsiasi sistema con [Node.js](https://nodejs.org) 22 o più recente:
@@ -124,7 +152,7 @@ npm run dev             # l'app desktop, che si ricarica mentre modifichi il cod
 3. **Esporta** la figura, oppure collega la cartella del paper così ogni salvataggio (⌘S / Ctrl+S)
    aggiorna il PDF e il TikZ che il tuo `.tex` include.
 
-Tutte le scorciatoie sono a un tasto di distanza: ⌘/ su macOS, Ctrl+/ su Windows.
+Tutte le scorciatoie sono a un tasto di distanza: ⌘/ su macOS, Ctrl+/ su Windows e Linux.
 
 ### Immagini AI facoltative
 
@@ -213,6 +241,8 @@ Per aggiungere forme e modelli di un nuovo campo, vedi [`src/domains/README.md`]
 npm run dist         # HeroFig.app per questo Mac, in release/, per provarla al volo
 npm run dist:mac     # le due immagini disco, Apple silicon e Intel
 npm run dist:win     # l'installer per Windows (si può creare anche da Mac)
+npm run dist:linux   # i pacchetti Linux, x64 e arm64 (si creano da Linux; rpm e pacman
+                     # richiedono i pacchetti rpm e libarchive-tools, ad es. su Ubuntu)
 ```
 
 ### Pubblicare una versione
@@ -229,8 +259,8 @@ git tag v<versione>
 git push origin v<versione>
 ```
 
-GitHub crea le app per macOS e Windows e pubblica la versione con i file allegati. Dalla scheda
-**Actions** puoi anche avviare a mano il flusso **Release**: crea le app come prova, senza
+GitHub crea le app per macOS, Windows e Linux e pubblica la versione con i file allegati. Dalla
+scheda **Actions** puoi anche avviare a mano il flusso **Release**: crea le app come prova, senza
 pubblicare niente.
 
 ## 🌍 Traduzioni

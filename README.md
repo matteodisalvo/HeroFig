@@ -14,6 +14,7 @@
   <a href="https://github.com/matteodisalvo/herofig/actions/workflows/checks.yml"><img src="https://github.com/matteodisalvo/herofig/actions/workflows/checks.yml/badge.svg" alt="Checks"></a>
   <img src="https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white" alt="macOS">
   <img src="https://img.shields.io/badge/Windows-0078D4?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRpdGxlPldpbmRvd3M8L3RpdGxlPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMCAwaDExLjM3N3YxMS4zNzJIMHptMTIuNjIzIDBIMjR2MTEuMzcySDEyLjYyM3pNMCAxMi42MjNoMTEuMzc3VjI0SDB6bTEyLjYyMyAwSDI0VjI0SDEyLjYyM3oiLz48L3N2Zz4K" alt="Windows">
+  <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" alt="Linux">
   <img src="https://img.shields.io/badge/LaTeX-TikZ-008080?logo=latex&logoColor=white" alt="TikZ export">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license"></a>
 </p>
@@ -39,6 +40,7 @@
 <p align="center">
   <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Download_for_macOS-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS"></a>
   <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Download_for_Windows-0078D4?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRpdGxlPldpbmRvd3M8L3RpdGxlPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMCAwaDExLjM3N3YxMS4zNzJIMHptMTIuNjIzIDBIMjR2MTEuMzcySDEyLjYyM3pNMCAxMi42MjNoMTEuMzc3VjI0SDB6bTEyLjYyMyAwSDI0VjI0SDEyLjYyM3oiLz48L3N2Zz4K" alt="Download for Windows"></a>
+  <a href="https://github.com/matteodisalvo/herofig/releases/latest"><img src="https://img.shields.io/badge/Download_for_Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download for Linux"></a>
 </p>
 
 Free and open source, no account needed, and your figures stay on your computer. The
@@ -101,6 +103,32 @@ Download the file for your system from the
 2. If Windows SmartScreen warns about an unknown publisher, click **More info → Run anyway**.
 3. Follow the installer: you can install HeroFig for your user only, without administrator rights.
 
+### <img src="docs/images/linux.svg" height="20" alt=""> Linux
+
+1. Download the package for your distribution from the
+   [latest release](https://github.com/matteodisalvo/herofig/releases/latest):
+   `herofig_<version>_amd64.deb` for Debian, Ubuntu and Mint; `herofig-<version>.x86_64.rpm`
+   for Fedora, RHEL and openSUSE; `herofig-<version>.pacman` for Arch and Manjaro;
+   `herofig-<version>.apk` for Alpine; `herofig-<version>.tar.gz` for any other distribution.
+   On ARM computers use the `arm64` or `aarch64` files.
+2. Install it from the terminal, in the folder where you downloaded it:
+
+   ```bash
+   sudo apt install ./herofig_<version>_amd64.deb        # Debian, Ubuntu, Mint
+   sudo dnf install ./herofig-<version>.x86_64.rpm       # Fedora, RHEL
+   sudo zypper install ./herofig-<version>.x86_64.rpm    # openSUSE
+   sudo pacman -U herofig-<version>.pacman               # Arch, Manjaro
+   sudo apk add --allow-untrusted herofig-<version>.apk  # Alpine
+   ```
+
+3. Or use the AppImage, which needs no installation: download `HeroFig-<version>.AppImage`,
+   make it executable and run it:
+
+   ```bash
+   chmod +x HeroFig-<version>.AppImage
+   ./HeroFig-<version>.AppImage
+   ```
+
 ### Run from source
 
 On any system with [Node.js](https://nodejs.org) 22 or newer:
@@ -121,7 +149,7 @@ npm run dev             # the desktop app, reloading as you edit the code
 3. **Export** the figure, or link the paper's folder so that every save (⌘S / Ctrl+S) updates the
    PDF and the TikZ that your `.tex` includes.
 
-All the shortcuts are one keystroke away: ⌘/ on macOS, Ctrl+/ on Windows.
+All the shortcuts are one keystroke away: ⌘/ on macOS, Ctrl+/ on Windows and Linux.
 
 ### Optional AI images
 
@@ -210,6 +238,8 @@ To add shapes and templates for a new field, see [`src/domains/README.md`](src/d
 npm run dist         # HeroFig.app for this Mac, in release/, to try it quickly
 npm run dist:mac     # the two disk images, Apple silicon and Intel
 npm run dist:win     # the Windows installer (it can be built from a Mac too)
+npm run dist:linux   # the Linux packages, x64 and arm64 (built on Linux; rpm and pacman
+                     # need the rpm and libarchive-tools packages, e.g. on Ubuntu)
 ```
 
 ### Publish a release
@@ -226,7 +256,7 @@ git tag v<version>
 git push origin v<version>
 ```
 
-GitHub builds the macOS and the Windows apps and creates the release with the files attached.
+GitHub builds the macOS, Windows and Linux apps and creates the release with the files attached.
 From the **Actions** tab you can also run the **Release** workflow by hand: it builds the apps as a
 test, without publishing anything.
 
