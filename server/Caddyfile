@@ -1,0 +1,5 @@
+{$HEROFIG_COLLAB_DOMAIN} {
+  reverse_proxy relay:8787 {
+    flush_interval -1
+  }
+}

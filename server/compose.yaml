@@ -1,0 +1,26 @@
+services:
+  relay:
+    build: .
+    environment:
+      HEROFIG_TRUST_PROXY: "1"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+  https:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      HEROFIG_COLLAB_DOMAIN: ${HEROFIG_COLLAB_DOMAIN:?Set the public DNS hostname}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - caddy_config:/config
+    depends_on: [relay]
+volumes:
+  certificates:
+  caddy_config:
